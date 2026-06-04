@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { site } from "@/lib/site";
 
 const nav = [
@@ -16,10 +16,11 @@ const nav = [
   { label: "Contact", href: "/contact" },
 ];
 
-/** Subpage nav — themed to match the new homepage (dark glass + molten accent). */
+/** Unified site nav — same on home + every subpage. Dark glass + molten accent. */
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const pathname = usePathname();
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -28,6 +29,17 @@ export function SiteNav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  useEffect(() => {
+    const saved = (localStorage.getItem("ri-theme") as "light" | "dark") || "dark";
+    setTheme(saved);
+    document.documentElement.setAttribute("data-theme", saved);
+  }, []);
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    localStorage.setItem("ri-theme", next);
+    document.documentElement.setAttribute("data-theme", next);
+  };
   const active = (h: string) => pathname === h || pathname.startsWith(h + "/");
 
   return (
@@ -78,6 +90,14 @@ export function SiteNav() {
           >
             {site.phone}
           </a>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20"
+          >
+            {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          </button>
           <Link
             href="/contact"
             className="hidden h-9 items-center rounded-full px-4 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 sm:inline-flex"

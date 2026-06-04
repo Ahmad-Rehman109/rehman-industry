@@ -10,11 +10,8 @@ import { WhatsappButton } from "@/components/whatsapp-button";
  * EXCEPT the homepage, which ships its own immersive nav/footer in the new theme.
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const bare = pathname === "/";
-
-  if (bare) return <>{children}</>;
-
+  // Same nav + footer on every page so navigation and theme toggle are consistent.
+  void usePathname();
   return (
     <>
       <SiteNav />

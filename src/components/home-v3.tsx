@@ -44,10 +44,19 @@ function loadScript(src: string) {
 }
 
 export function HomeV3() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => { setTheme(((localStorage.getItem("ri-theme") as "light" | "dark") || "light")); }, []);
-  useEffect(() => { localStorage.setItem("ri-theme", theme); }, [theme]);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  // sync to html[data-theme] (set by the global nav toggle) so this section
+  // re-renders when the user flips theme anywhere.
+  useEffect(() => {
+    const sync = () => {
+      const t = (document.documentElement.getAttribute("data-theme") as "light" | "dark") || "dark";
+      setTheme(t);
+    };
+    sync();
+    const obs = new MutationObserver(sync);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => obs.disconnect();
+  }, []);
 
   // hero + product slideshows (lightweight, no libs)
   useEffect(() => {
@@ -98,18 +107,7 @@ export function HomeV3() {
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
       <div className="bgfx" aria-hidden><div className="orb a" /><div className="orb b" /></div>
 
-      <header id="v3hdr">
-        <div className="nav">
-          <a className="brand" href="#top"><img className="logomark" src="/brand/mark.svg" alt="" width={32} height={32} />Rehman <b>Industry</b></a>
-          <nav className="navlinks"><a href="#how">Process</a><a href="#capability">Capability</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
-          <div className="navactions">
-            <button className="tgl" onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))} aria-label="Toggle theme">{theme === "light" ? "🌙" : "☀️"}</button>
-            <a className="btn" href="#contact">Get a quote →</a>
-          </div>
-        </div>
-      </header>
-
-      {/* HERO — image slideshow + kinetic headline (the demo hero) */}
+      {/* HERO — image slideshow + kinetic headline */}
       <section className="hero" id="top">
         <div className="heroimgs">{HERO.map((src, i) => <div key={src} className={`hs${i === 0 ? " on" : ""}`} style={{ backgroundImage: `url('${src}')` }} />)}</div>
         <div className="wrap heroinner">
@@ -183,15 +181,58 @@ export function HomeV3() {
         <div className="steps">{STEPS.map((s) => <div className="step" key={s[0]}><div className="no">{s[0]}</div><div><h3>{s[1]}</h3><p>{s[2]}</p></div></div>)}</div>
       </section>
 
-      {/* CTA */}
-      <section className="cta-big" id="contact"><div className="wrap">
-        <h2 className="disp">Let&apos;s make <em className="serif">your part.</em></h2>
-        <p>Send a drawing, a sample, or just a requirement. We usually reply within a business day.</p>
-        <div className="cta"><a className="btn lg wa" href="https://wa.me/923009642762">WhatsApp us</a><a className="btn lg ghost" href="tel:+923009642762">+92 300 9642762</a></div>
-      </div></section>
-
-      <footer><div className="wrap foot"><div>© Rehman Industry — Gujranwala, Pakistan</div><div>Plastic Injection Moulding · Tooling · Contract Manufacturing</div></div></footer>
+      {/* CONTACT — kicker + working form */}
+      <section className="contactblk" id="contact">
+        <div className="wrap contactgrid">
+          <div>
+            <p className="eyebrow">Get in touch</p>
+            <h2 className="lead disp" style={{ marginTop: 14 }}>Let&apos;s make <em className="serif">your part.</em></h2>
+            <p className="msub">Send a drawing, a sample, or just a requirement. We usually reply within a business day.</p>
+            <div className="cinfo">
+              <div><span>Call</span><a href="tel:+923009642762">+92 300 9642762</a></div>
+              <div><span>Email</span><a href="mailto:info@rehmanindustry.com">info@rehmanindustry.com</a></div>
+              <div><span>WhatsApp</span><a href="https://wa.me/923009642762" target="_blank" rel="noopener noreferrer">Chat now →</a></div>
+              <div><span>Visit</span>Link Sui Gas Road, Gujranwala, Pakistan</div>
+            </div>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
     </div>
+  );
+}
+
+function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    const fd = new FormData(e.currentTarget);
+    const body = JSON.stringify(Object.fromEntries(fd.entries()));
+    try {
+      const res = await fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body });
+      setStatus(res.ok ? "ok" : "err");
+      if (res.ok) e.currentTarget.reset();
+    } catch { setStatus("err"); }
+  }
+  if (status === "ok") {
+    return (
+      <div className="formcard ok">
+        <h3>Thank you — enquiry received.</h3>
+        <p>We&apos;ll be in touch, usually within a business day.</p>
+        <button className="btn lg" onClick={() => setStatus("idle")}>Send another</button>
+      </div>
+    );
+  }
+  return (
+    <form className="formcard" onSubmit={submit}>
+      <div className="frow"><label>Name<input name="name" required placeholder="Your name" /></label><label>Company<input name="company" placeholder="Optional" /></label></div>
+      <div className="frow"><label>Phone / WhatsApp<input name="phone" required placeholder="+92 3xx xxxxxxx" /></label><label>Email<input name="email" type="email" placeholder="you@company.com" /></label></div>
+      <label>Estimated quantity<input name="quantity" placeholder="e.g. 5,000 pcs / month" /></label>
+      <label>Your requirement<textarea name="message" required rows={4} placeholder="Tell us about the part — material, drawing or sample, quantity." /></label>
+      {status === "err" && <p className="ferr">Couldn&apos;t send. Try WhatsApp instead.</p>}
+      <button type="submit" className="btn lg" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send enquiry →"}</button>
+    </form>
   );
 }
 
@@ -288,20 +329,21 @@ function initMachine(gsap: any) {
 
 /* ------------------------------------------------------------------- css */
 const CSS = `
-.v3{--bg:#ffffff;--bg2:#f5f7fa;--ink:#0d1117;--muted:#5b6573;--line:rgba(12,17,28,.10);--blue:#1d4ed8;--blue2:#2563eb;--card:#ffffff;--orb:.14;
+.v3{--bg:#ffffff;--bg2:#f5f7fa;--ink:#0d1117;--muted:#5b6573;--line:rgba(12,17,28,.10);--blue:#ff7a18;--blue2:#ff9d3c;--card:#ffffff;--orb:.14;
   position:relative;background:var(--bg);color:var(--ink);font-family:var(--font-hanken),Inter,sans-serif;overflow-x:hidden}
-.v3[data-theme="dark"]{--bg:#0a0b0d;--bg2:#101216;--ink:#f4f6f8;--muted:#9aa3ad;--line:rgba(255,255,255,.10);--blue:#2e7dff;--blue2:#6aa8ff;--card:#101216;--orb:.4}
+.v3[data-theme="dark"]{--bg:#0a0b0d;--bg2:#101216;--ink:#f4f6f8;--muted:#9aa3ad;--line:rgba(255,255,255,.10);--blue:#ff7a18;--blue2:#ff9d3c;--card:#101216;--orb:.4}
 .v3 *{box-sizing:border-box}
 .v3 a{color:inherit;text-decoration:none}
 .v3 .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
 .v3 .disp{font-weight:700;letter-spacing:-.03em;line-height:.98}
 .v3 .serif{font-family:var(--font-instrument-serif),serif;font-style:italic;font-weight:400;color:var(--blue2)}
 .v3 .eyebrow{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--blue2);font-weight:600}
-/* perf: fixed bg, lighter blur */
+/* perf: fixed bg, lighter blur; orbs hidden on mobile to kill GPU lag */
 .v3 .bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.v3 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--orb);will-change:transform}
+.v3 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--orb)}
 .v3 .orb.a{width:420px;height:420px;background:#3b82f6;top:-140px;left:-60px}
-.v3 .orb.b{width:460px;height:460px;background:#1d4ed8;bottom:-160px;right:-120px}
+.v3 .orb.b{width:460px;height:460px;background:#ff6a00;bottom:-160px;right:-120px}
+@media(max-width:860px){.v3 .bgfx{display:none}}
 .v3>section,.v3>header,.v3>.marq,.v3>footer{position:relative;z-index:2}
 /* nav */
 .v3 #v3hdr{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s}
@@ -314,18 +356,30 @@ const CSS = `
 .v3 .navlinks{display:flex;gap:28px;font-size:14px;font-weight:500;color:rgba(255,255,255,.8)}
 .v3 #v3hdr.scrolled .navlinks{color:var(--muted)}
 .v3 .navlinks a:hover{color:#fff}.v3 #v3hdr.scrolled .navlinks a:hover{color:var(--ink)}
-.v3 .navactions{display:flex;align-items:center;gap:12px}
-.v3 .tgl{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:100px;width:38px;height:38px;cursor:pointer;font-size:15px}
+.v3 .navactions{display:flex;align-items:center;gap:10px}
+.v3 .tgl{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:100px;width:38px;height:38px;cursor:pointer;font-size:15px;flex-shrink:0}
 .v3 #v3hdr.scrolled .tgl{background:none;border-color:var(--line);color:var(--ink)}
-.v3 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:600;transition:.3s;border:1px solid transparent;cursor:pointer}
-.v3 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px var(--blue)}
+.v3 .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#ff9d3c,#ff6a00);color:#fff;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:600;transition:.3s;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.v3 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px #ff6a00}
 .v3 .btn.lg{padding:15px 26px;font-size:15px}
 .v3 .btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
-.v3 .btn.ghost.light{border-color:rgba(255,255,255,.4);color:#fff}
+.v3 .btn.ghost.light{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
 .v3 .btn.wa{background:#25D366}
-@media(max-width:860px){.v3 .navlinks{display:none}}
+.v3 .menubtn{display:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:10px;width:42px;height:42px;font-size:20px;cursor:pointer}
+.v3 #v3hdr.scrolled .menubtn{background:none;border-color:var(--line);color:var(--ink)}
+.v3 .mobilemenu{display:none;flex-direction:column;background:#0a0b0d;border-top:1px solid rgba(255,255,255,.08);padding:8px 18px 22px}
+.v3 .mobilemenu a{color:#e6e8eb;padding:14px 6px;border-bottom:1px solid rgba(255,255,255,.06);font-size:16px;font-weight:500}
+.v3 .mobilemenu a.btn{margin-top:14px;justify-content:center;border:none;color:#fff}
+@media(max-width:860px){
+  .v3 .navlinks{display:none}
+  .v3 .quotebtn{display:none}
+  .v3 .menubtn{display:inline-flex;align-items:center;justify-content:center}
+  .v3 .mobilemenu{display:flex}
+}
 /* hero */
 .v3 .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+@media(max-width:640px){.v3 .hero{min-height:92vh}}
+.v3 .hero h1{word-break:break-word;overflow-wrap:anywhere}
 .v3 .heroimgs{position:absolute;inset:0;z-index:0}
 .v3 .hs{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease}
 .v3 .hs.on{opacity:1}
@@ -341,6 +395,8 @@ const CSS = `
 /* marquee */
 .v3 .marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
 .v3 .track{display:inline-flex;gap:46px;animation:v3scroll 34s linear infinite}
+@media(prefers-reduced-motion:reduce){.v3 .track{animation:none}}
+@media(max-width:560px){.v3 .marq{padding:18px 0}.v3 .track{animation-duration:50s}}
 .v3 .track span{font-size:clamp(20px,2.6vw,36px);font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:46px;opacity:.5}
 .v3 .track b{color:var(--ink);font-weight:600}.v3 .track .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);display:inline-block}
 @keyframes v3scroll{to{transform:translateX(-50%)}}
@@ -395,6 +451,22 @@ const CSS = `
 .v3 .cta-big h2{font-size:clamp(40px,7vw,104px);font-weight:700}
 .v3 .cta-big p{color:var(--muted);margin:22px auto 0;max-width:46ch;font-size:18px}
 .v3 .cta-big .cta{justify-content:center;display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-.v3 footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted);font-size:14px}
-.v3 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+/* contact section */
+.v3 .contactblk{padding:120px 0;border-top:1px solid var(--line);background:var(--bg2)}
+.v3 .contactgrid{display:grid;grid-template-columns:1fr 1.05fr;gap:54px;align-items:start}
+@media(max-width:880px){.v3 .contactgrid{grid-template-columns:1fr;gap:34px}}
+.v3 .cinfo{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:18px 32px}
+.v3 .cinfo div{display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--ink)}
+.v3 .cinfo span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.v3 .cinfo a{color:var(--ink)}.v3 .cinfo a:hover{color:#ff7a18}
+.v3 .formcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.v3 .formcard.ok{align-items:flex-start;gap:14px}.v3 .formcard.ok h3{font-size:22px;font-weight:700}
+.v3 .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.v3 .frow{grid-template-columns:1fr}}
+.v3 .formcard label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted);font-weight:600}
+.v3 .formcard input,.v3 .formcard textarea{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:14px;color:var(--ink);font-family:inherit;outline:none;transition:border-color .2s}
+.v3 .formcard input:focus,.v3 .formcard textarea:focus{border-color:#ff7a18}
+.v3 .formcard textarea{resize:vertical;min-height:90px}
+.v3 .ferr{color:#ef4444;font-size:13px}
+.v3 .formcard .btn{align-self:flex-start;background:linear-gradient(180deg,#ff9d3c,#ff6a00);color:#fff;border:none}
 `;
