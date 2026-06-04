@@ -3,9 +3,7 @@ import { Hanken_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/goog
 import "./globals.css";
 import { JsonLd, localBusinessSchema, websiteSchema } from "@/lib/jsonld";
 import { site } from "@/lib/site";
-import { SiteNav } from "@/components/nav-v2";
-import { SiteFooter } from "@/components/footer-v2";
-import { WhatsappButton } from "@/components/whatsapp-button";
+import { SiteChrome } from "@/components/site-chrome";
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
@@ -55,6 +53,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
+    images: [{ url: "/products/taillamp-2.webp", width: 1456, height: 816, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
@@ -85,10 +84,7 @@ export default function RootLayout({
       className={`${hanken.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans antialiased">
-        <SiteNav />
-        <main>{children}</main>
-        <SiteFooter />
-        <WhatsappButton />
+        <SiteChrome>{children}</SiteChrome>
         <JsonLd data={localBusinessSchema()} />
         <JsonLd data={websiteSchema()} />
       </body>

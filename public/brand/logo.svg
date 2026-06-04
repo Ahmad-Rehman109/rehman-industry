@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" role="img" aria-label="Rehman Industry — Plastic Injection Moulding">
+  <defs>
+    <linearGradient id="ls" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b313a"/><stop offset="1" stop-color="#14171c"/></linearGradient>
+    <linearGradient id="lm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9d3c"/><stop offset="1" stop-color="#ff6a00"/></linearGradient>
+  </defs>
+  <rect x="6" y="8" width="56" height="56" rx="16" fill="url(#ls)"/>
+  <text x="34" y="38" text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-weight="800" font-size="36" fill="#f4f6f8">R</text>
+  <rect x="32.5" y="15" width="3" height="42" rx="1.5" fill="url(#lm)"/>
+  <text x="78" y="34" font-family="'Hanken Grotesk',Arial,sans-serif" font-size="27" font-weight="800" letter-spacing="-0.5" fill="#14171c">Rehman <tspan fill="#ff6a00">Industry</tspan></text>
+  <text x="79" y="52" font-family="'Hanken Grotesk',Arial,sans-serif" font-size="9" font-weight="600" letter-spacing="3" fill="#7b8694">PLASTIC INJECTION MOULDING</text>
+</svg>

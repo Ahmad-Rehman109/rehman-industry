@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Moulding cycle — animation</title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+ :root{--bg:#0a0b0d;--ink:#eef2f6;--muted:#8b95a1;--blue:#2e7dff;--blue2:#6aa8ff;--line:#37424f;--line2:#56657a;--molten:#ff9a4d}
+ *{margin:0;padding:0;box-sizing:border-box}
+ body{background:radial-gradient(1100px 700px at 80% -10%,#0e1a33 0%,var(--bg) 60%);color:var(--ink);font-family:Inter,sans-serif;min-height:100vh}
+ .hero{max-width:1240px;margin:0 auto;min-height:100vh;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:40px;padding:60px 32px}
+ @media(max-width:900px){.hero{grid-template-columns:1fr;gap:24px}}
+ .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--blue2);font-weight:600}
+ h1{font-family:"Space Grotesk";font-weight:700;font-size:clamp(38px,5vw,72px);letter-spacing:-.03em;line-height:1;margin-top:18px}
+ h1 em{font-family:"Instrument Serif";font-style:italic;font-weight:400;color:var(--blue2)}
+ .sub{color:#c7ced6;font-size:18px;line-height:1.6;margin-top:22px;max-width:46ch}
+ .cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+ .btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:14px 24px;border-radius:100px;font-size:15px;font-weight:600;transition:.3s}
+ .btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -8px var(--blue)}
+ .btn.ghost{background:transparent;border:1px solid var(--line2);color:#fff}
+ .stats{display:flex;gap:28px;margin-top:34px;color:var(--muted);font-size:13px}
+ .stats b{display:block;font-family:"Space Grotesk";font-size:26px;color:var(--ink);font-weight:600}
+ .panel{background:linear-gradient(160deg,rgba(46,125,255,.06),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:24px;padding:22px 22px 18px}
+ svg{width:100%;height:auto;display:block}
+ .body{fill:none;stroke:var(--line);stroke-width:1.5}
+ .body2{fill:none;stroke:var(--line2);stroke-width:1.5}
+ .soft{fill:rgba(255,255,255,.02);stroke:var(--line);stroke-width:1.5}
+ .lbl{font-family:"Space Grotesk";font-size:9.5px;fill:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+ .barfoot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:14px;border-top:1px solid var(--line)}
+ .stage{font-family:"Space Grotesk";font-weight:600;font-size:15px}.stage b{color:var(--blue2)}
+ .dots{display:flex;gap:6px}.dot{width:22px;height:4px;border-radius:4px;background:#222a35;transition:.4s}.dot.on{background:var(--blue)}
+ .read{font-family:"Space Grotesk";font-size:12px;color:var(--muted)}.read b{color:var(--ink)}
+</style></head><body>
+<section class="hero">
+  <div>
+    <p class="eyebrow">Gujranwala, Pakistan · Since 1985</p>
+    <h1>Precision plastic,<br/>moulded <em>at scale.</em></h1>
+    <p class="sub">Watch the process we've run for four decades — molten polymer, formed under tonnes of clamp pressure, ejected as a finished part. On Japanese presses from 80 to 385 tonnes.</p>
+    <div class="cta">
+      <a class="btn" href="#">Get a quote →</a>
+      <a class="btn ghost" href="#">See our work</a>
+    </div>
+    <div class="stats"><div><b>40+</b>years</div><div><b>4</b>presses</div><div><b>80–385T</b>clamp</div></div>
+  </div>
+
+  <div class="panel">
+    <svg viewBox="0 0 600 340" fill="none">
+      <defs><clipPath id="barrelClip"><rect x="46" y="178" width="186" height="44" rx="22"/></clipPath></defs>
+
+      <!-- ===== MACHINE BASE / BED (hollow iron housing: hydraulics + electronics) ===== -->
+      <rect x="250" y="228" width="20" height="30" class="body"/>
+      <rect x="498" y="228" width="44" height="30" class="body"/>
+      <rect x="24" y="256" width="552" height="58" rx="10" class="soft"/>
+      <line x1="40" y1="273" x2="560" y2="273" class="body"/>
+      <g stroke="var(--line)" stroke-width="1.2" opacity=".55">
+        <line x1="300" y1="287" x2="300" y2="304"/><line x1="316" y1="287" x2="316" y2="304"/>
+        <line x1="332" y1="287" x2="332" y2="304"/><line x1="348" y1="287" x2="348" y2="304"/>
+        <line x1="364" y1="287" x2="364" y2="304"/><line x1="380" y1="287" x2="380" y2="304"/>
+      </g>
+      <text x="280" y="330" class="lbl" text-anchor="middle">Machine base · drives &amp; controls</text>
+
+      <!-- barrel cradle: half-cylinder support running the full barrel length -->
+      <path d="M44 200 v8 a14 14 0 0 0 14 14 h166 a14 14 0 0 0 14 -14 v-8" class="body"/>
+      <rect x="72" y="222" width="12" height="34" class="body"/>
+      <rect x="196" y="222" width="12" height="34" class="body"/>
+
+      <!-- tie bars -->
+      <line x1="262" y1="160" x2="520" y2="160" class="body"/>
+      <line x1="262" y1="240" x2="520" y2="240" class="body"/>
+
+      <!-- ===== INJECTION UNIT ("the gun") — this whole group slides forward ===== -->
+      <g id="gun">
+        <!-- hopper -->
+        <polygon points="88,96 150,96 136,140 102,140" class="soft"/>
+        <rect x="110" y="140" width="16" height="40" class="body"/>
+        <text x="118" y="86" class="lbl" text-anchor="middle">Hopper</text>
+        <g id="hopperFill" fill="#566273"></g>
+        <g id="feed" fill="#566273"></g>
+        <!-- barrel -->
+        <rect x="46" y="178" width="186" height="44" rx="22" class="soft"/>
+        <text x="135" y="240" class="lbl" text-anchor="middle">Barrel · 230°C</text>
+        <rect x="150" y="174" width="9" height="52" rx="2" class="body2"/>
+        <rect x="178" y="174" width="9" height="52" rx="2" class="body2"/>
+        <rect x="206" y="174" width="9" height="52" rx="2" class="body2"/>
+        <!-- rotating screw (clipped inside barrel) -->
+        <g clip-path="url(#barrelClip)">
+          <line x1="40" y1="200" x2="232" y2="200" stroke="var(--line2)" stroke-width="11" stroke-linecap="round"/>
+          <g id="flights" stroke="var(--blue2)" stroke-width="2" opacity=".85"></g>
+        </g>
+        <!-- nozzle -->
+        <polygon id="nozzle" points="232,193 246,200 232,207" class="body2"/>
+      </g>
+
+      <!-- molten shot into cavity -->
+      <rect id="shot" x="268" y="197" width="34" height="6" rx="3" fill="var(--molten)" opacity="0"/>
+
+      <!-- ===== CLAMP / MOULD ===== -->
+      <rect x="256" y="150" width="12" height="100" rx="3" class="body2"/>
+      <g>
+        <rect x="268" y="172" width="46" height="56" rx="3" class="soft"/>
+        <path d="M314 190 h-14 a8 8 0 0 0 -8 8 v4 a8 8 0 0 0 8 8 h14 z" fill="#0d1219" stroke="var(--line)" stroke-width="1"/>
+      </g>
+      <text x="316" y="262" class="lbl" text-anchor="middle">Mould</text>
+
+      <g id="part" opacity="0">
+        <path d="M302 191 h20 a7 7 0 0 1 7 7 v4 a7 7 0 0 1 -7 7 h-20 a4 4 0 0 1 -4 -4 v-10 a4 4 0 0 1 4 -4 z" fill="var(--blue)"/>
+        <rect x="322" y="194" width="8" height="12" rx="2" fill="var(--blue2)"/>
+      </g>
+
+      <g id="moving">
+        <rect x="314" y="172" width="46" height="56" rx="3" fill="rgba(46,125,255,.05)" stroke="var(--blue)" stroke-width="1.6"/>
+        <rect x="360" y="150" width="12" height="100" rx="3" class="body2"/>
+        <g id="ejector" fill="var(--line2)">
+          <rect x="314" y="195.5" width="0" height="3.4" rx="1.5"/>
+          <rect x="314" y="201.5" width="0" height="3.4" rx="1.5"/>
+        </g>
+      </g>
+
+      <!-- hydraulic clamp ram (thick cylinder, fixed) -->
+      <text x="504" y="150" class="lbl" text-anchor="middle">Hydraulic ram</text>
+      <rect id="rod" x="372" y="192" width="98" height="16" rx="4" fill="var(--line2)"/>
+      <rect x="463" y="185" width="10" height="30" rx="2" class="body2"/>
+      <rect x="470" y="174" width="84" height="52" rx="13" class="soft"/>
+      <line x1="492" y1="176" x2="492" y2="224" class="body"/>
+      <line x1="514" y1="176" x2="514" y2="224" class="body"/>
+      <rect x="554" y="168" width="10" height="64" rx="3" class="body2"/>
+
+      <!-- gauge -->
+      <text x="474" y="60" class="lbl" text-anchor="middle">Pressure</text>
+      <path d="M448 94 A26 26 0 0 1 500 94" stroke="#222a35" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path id="gaugeFill" d="M448 94 A26 26 0 0 1 500 94" stroke="var(--blue)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="82" stroke-dashoffset="82"/>
+      <line id="needle" x1="474" y1="94" x2="474" y2="72" stroke="var(--blue2)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="474" cy="94" r="4" fill="var(--line2)"/>
+    </svg>
+
+    <div class="barfoot">
+      <div class="stage" id="stage">1 · <b>Mould clamps shut</b></div>
+      <div class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="read"><b id="pr">0</b> bar</div>
+    </div>
+  </div>
+</section>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const C=(cx,cy,r,f)=>{const c=document.createElementNS(NS,'circle');c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);if(f)c.setAttribute('fill',f);return c};
+
+// fill hopper completely (packed rows)
+const hf=document.getElementById('hopperFill');
+for(let y=104;y<=134;y+=7){const w=(y-96)*0.4; for(let x=119-(18-w);x<=119+(18-w);x+=7){hf.appendChild(C(x+(Math.random()*2-1),y,2.6))}}
+// a few pellets feeding down the neck, looping (hopper stays full)
+const feed=document.getElementById('feed');
+for(let i=0;i<3;i++){const c=C(114+Math.random()*8,150,2.6);feed.appendChild(c);
+ gsap.to(c,{y:30,duration:1.6,delay:i*.55,repeat:-1,ease:'power1.in',onRepeat(){c.setAttribute('cx',114+Math.random()*8)}});}
+// screw flights (barber-pole that scrolls toward the nozzle = rotation)
+const fl=document.getElementById('flights');
+for(let x=40;x<=250;x+=16){const l=document.createElementNS(NS,'line');l.setAttribute('x1',x);l.setAttribute('y1',189);l.setAttribute('x2',x+8);l.setAttribute('y2',211);fl.appendChild(l);}
+gsap.to('#flights',{x:16,duration:.7,repeat:-1,ease:'none'}); // continuous screw rotation
+
+const stages=["1 · <b>Mould clamps shut</b>","2 · <b>Unit forward + inject</b>","3 · <b>Hold &amp; cool</b>","4 · <b>Mould opens</b>","5 · <b>Part ejected</b>"];
+const dots=document.querySelectorAll('.dot');
+const setStage=i=>{document.getElementById('stage').innerHTML=stages[i];dots.forEach((d,j)=>d.classList.toggle('on',j===i))};
+const PR=document.getElementById('pr');const prObj={v:0};const setPr=()=>PR.textContent=Math.round(prObj.v);
+
+gsap.set('#needle',{svgOrigin:'474 94'});
+gsap.set('#shot',{svgOrigin:'268 200'});
+gsap.set('#rod',{svgOrigin:'470 200'}); // piston rod anchored at the cylinder front
+
+function reset(){
+ gsap.set('#part',{opacity:0,x:0,y:0,rotation:0,fill:'var(--molten)'});
+ gsap.set('#ejector rect',{attr:{x:314,width:0}});
+ gsap.set('#moving',{x:70});
+ gsap.set('#rod',{scaleX:.30});
+ gsap.set('#gun',{x:0});
+ gsap.set('#shot',{opacity:0,scaleX:0});
+ gsap.set('#needle',{rotation:-90});
+ gsap.set('#gaugeFill',{strokeDashoffset:82});
+ prObj.v=0;setPr();
+}
+function build(){
+ const tl=gsap.timeline({onComplete(){reset();build();}});
+ // 1 clamp close — ram extends, platen slides shut
+ tl.call(()=>setStage(0))
+   .to('#moving',{x:0,duration:1.2,ease:'power2.inOut'},0)
+   .to('#rod',{scaleX:1,duration:1.2,ease:'power2.inOut'},0)
+   .to({},{duration:.25})
+ // 2 unit (gun) moves forward to contact the mould, then injects
+   .call(()=>setStage(1))
+   .to('#gun',{x:14,duration:.6,ease:'power2.out'},'fwd')
+   .to('#nozzle',{fill:'var(--molten)',duration:.3},'fwd+=0.3')
+   .fromTo('#shot',{opacity:1,scaleX:0},{scaleX:1,duration:.9,ease:'power2.out'},'fwd+=0.4')
+   .to('#part',{opacity:1,duration:.6},'fwd+=0.7')
+   .to(prObj,{v:1400,duration:1.3,ease:'power2.out',onUpdate:setPr},'fwd+=0.4')
+   .to('#gaugeFill',{strokeDashoffset:24,duration:1.3,ease:'power2.out'},'fwd+=0.4')
+   .to('#needle',{rotation:60,duration:1.3,ease:'power2.out'},'fwd+=0.4')
+   .to('#shot',{opacity:0,duration:.3})
+ // 3 hold & cool, unit retracts (sprue break)
+   .call(()=>setStage(2))
+   .to('#part',{fill:'var(--blue)',duration:1.0})
+   .to('#gun',{x:0,duration:.7,ease:'power1.inOut'},'<')
+   .to(prObj,{v:0,duration:1.1,onUpdate:setPr},'<')
+   .to('#gaugeFill',{strokeDashoffset:82,duration:1.1},'<')
+   .to('#needle',{rotation:-90,duration:1.1,ease:'power2.inOut'},'<')
+   .to('#nozzle',{fill:'var(--line2)',duration:.5},'<')
+   .to({},{duration:.4})
+ // 4 mould opens — ram retracts, the PART stays on the moving (core) half
+   .call(()=>setStage(3))
+   .to('#moving',{x:70,duration:1.2,ease:'power2.inOut'})
+   .to('#part',{x:70,duration:1.2,ease:'power2.inOut'},'<')
+   .to('#rod',{scaleX:.30,duration:1.2,ease:'power2.inOut'},'<')
+ // 5 eject — pins push the part off the core, it drops
+   .call(()=>setStage(4))
+   .to('#ejector rect',{attr:{x:298,width:16},duration:.4,ease:'power2.out'})
+   .to('#part',{x:50,y:118,opacity:0,rotation:10,duration:1.0,ease:'power1.in'},'<.08')
+   .to('#ejector rect',{attr:{x:314,width:0},duration:.3})
+   .to({},{duration:.6});
+}
+reset();build();
+</script>
+</body></html>

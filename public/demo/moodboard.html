@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Image Moodboard — pick the keepers</title>
+<meta name="robots" content="noindex"/>
+<style>
+ *{margin:0;padding:0;box-sizing:border-box}
+ body{background:#0a0b0d;color:#f4f6f8;font-family:system-ui,sans-serif;padding:40px 28px}
+ h1{font-size:28px;font-weight:700}
+ p.note{color:#9aa3ad;margin-top:8px;max-width:70ch;line-height:1.5}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:30px}
+ figure{background:#101216;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden}
+ figure img{width:100%;height:220px;object-fit:cover;display:block;background:#1a1d22}
+ figcaption{padding:12px 14px}
+ .no{display:inline-block;background:#2e7dff;color:#fff;font-weight:700;border-radius:8px;padding:2px 9px;font-size:13px;margin-right:8px}
+ .cat{color:#6aa8ff;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+ .desc{color:#c7ced6;font-size:13px;margin-top:5px;line-height:1.4}
+</style></head><body>
+<h1>📋 Image Moodboard — tell me the numbers to keep</h1>
+<p class="note">These all load clean. Pick ~12–20 you like for the site (most relevant + cleanest). Just reply with the numbers, e.g. "keep 1,3,4,7,9,12,15,18". I'll wire only those across the demo + real site, and we drop the rest. Two are even shot in Karachi, Pakistan 🇵🇰.</p>
+<div class="grid" id="g"></div>
+<script>
+const P=(id,w)=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w||600}`;
+const items=[
+ [32972129,"Worker · Karachi 🇵🇰","Factory worker at an industrial machine control panel"],
+ [32972128,"Worker · Karachi 🇵🇰","Factory worker operating machinery"],
+ [34718928,"Tooling","Metal moulds neatly arranged on industrial shelving"],
+ [28929510,"Machining","Industrial CNC lathe in a machine shop"],
+ [35072831,"Operation","Technician using a control panel to run machinery"],
+ [6654764,"Detail","Stainless-steel machine close-up, screws & nuts"],
+ [28929513,"Machining","Lathe machine in action — precision engineering"],
+ [31115985,"Product","Pile of white plastic screw caps"],
+ [5953666,"Product","Neatly stacked white plastic tubes in a plant"],
+ [11765538,"Worker","Worker focused on operating industrial machinery"],
+ [11765539,"Worker","Workers operating factory machinery, production"],
+ [13524778,"Product","Shoe-sole models in black crates — production"],
+ [28248443,"Product","White plastic lids, clean studio lighting"],
+ [17937669,"Production","Yellow plastic components on a production line"],
+ [18631424,"Line","Bottles on an automated conveyor, modern factory"],
+ [31985602,"Line","Bottling line close-up, hoses & machinery"],
+ [14745095,"Material","Plastic picks on textured plastic pellets"],
+ [10376368,"Product","Blue plastic caps arranged in a pattern"],
+ [15524063,"Product","Stacked bottles with blue caps"],
+ [12951627,"Factory","Spacious factory hall with orange pillars"],
+ [36311187,"Mood","B&W industrial machinery — cables, pipes, structure"],
+];
+document.getElementById('g').innerHTML=items.map((it,i)=>`
+ <figure><img loading="lazy" src="${P(it[0])}" alt="${it[2]}"/>
+ <figcaption><div><span class="no">${i+1}</span><span class="cat">${it[1]}</span></div>
+ <div class="desc">${it[2]}</div></figcaption></figure>`).join('');
+</script>
+</body></html>

@@ -10,6 +10,7 @@ const nav = [
   { label: "Services", href: "/services" },
   { label: "Capabilities", href: "/capabilities" },
   { label: "Industries", href: "/industries" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
@@ -24,15 +25,21 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/85 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
+        <Link href="/" className="inline-flex items-center gap-2.5 text-lg font-semibold tracking-tight">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/mark.svg" alt="" width={30} height={30} className="rounded-lg" />
           Rehman <span className="text-blue-600">Industry</span>
         </Link>
-        <nav className="hidden items-center gap-7 text-sm text-neutral-600 lg:flex">
+        <nav className="hidden items-center gap-7 text-sm font-medium text-neutral-600 lg:flex">
           {nav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              className={active(n.href) ? "text-blue-600" : "hover:text-neutral-900"}
+              className={`relative py-1 transition-colors after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:rounded-full after:bg-blue-600 after:transition-all ${
+                active(n.href)
+                  ? "text-blue-600 after:w-full"
+                  : "hover:text-neutral-900 after:w-0 hover:after:w-full"
+              }`}
             >
               {n.label}
             </Link>

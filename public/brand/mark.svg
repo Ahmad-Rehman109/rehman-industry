@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Rehman Industry">
+  <defs>
+    <linearGradient id="ri-steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b313a"/>
+      <stop offset="1" stop-color="#14171c"/>
+    </linearGradient>
+    <linearGradient id="ri-molten" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9d3c"/>
+      <stop offset="1" stop-color="#ff6a00"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="92" height="92" rx="26" fill="url(#ri-steel)"/>
+  <rect x="4.5" y="4.5" width="91" height="91" rx="25.5" fill="none" stroke="#ffffff" stroke-opacity="0.06"/>
+  <text x="50" y="55" text-anchor="middle" dominant-baseline="central"
+        font-family="'Hanken Grotesk','Space Grotesk','Arial Black',Arial,sans-serif"
+        font-weight="800" font-size="58" fill="#f4f6f8">R</text>
+  <rect x="48.5" y="15" width="3" height="70" rx="1.5" fill="url(#ri-molten)"/>
+</svg>

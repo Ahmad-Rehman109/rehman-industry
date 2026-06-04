@@ -30,7 +30,7 @@ export function localBusinessSchema() {
     url: site.url,
     telephone: site.phoneHref,
     email: site.email,
-    image: absoluteUrl("/opengraph-image"),
+    image: absoluteUrl("/products/taillamp-2.webp"),
     priceRange: "$$",
     foundingDate: String(site.foundingYear),
     address: {

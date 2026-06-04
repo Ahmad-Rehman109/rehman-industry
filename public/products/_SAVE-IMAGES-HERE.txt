@@ -1,0 +1,13 @@
+Save your product images in THIS folder (public/products) with these EXACT names.
+Each product shows a 2-image slideshow, so give it -1 and -2.
+
+  taillamp-1.jpg     taillamp-2.jpg      (Toyota Aqua tail-lamp covers)
+  mudguard-1.jpg     mudguard-2.jpg      (motorcycle mudguards)
+  aircooler-1.jpg    aircooler-2.jpg     (air cooler bodies)
+  thermos-1.jpg      thermos-2.jpg       (thermos / water bodies)
+  jug-1.jpg          jug-2.jpg           (jugs & cups)
+  poultrymat-1.jpg   poultrymat-2.jpg    (poultry floor mats)
+  lids-1.jpg         lids-2.jpg          (lids & closures)
+  enclosure-1.jpg    enclosure-2.jpg     (instrument boxes)
+
+Lowercase, .jpg, no spaces. Refresh the site after dropping them in.

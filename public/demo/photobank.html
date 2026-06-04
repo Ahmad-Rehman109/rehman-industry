@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Photo bank v2 — pick per product</title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+ *{margin:0;padding:0;box-sizing:border-box}
+ body{background:#0a0b0d;color:#f4f6f8;font-family:Inter,sans-serif;padding:40px 28px 80px}
+ h1{font-family:"Space Grotesk";font-size:30px;font-weight:700}
+ p.note{color:#9aa3ad;margin-top:8px;max-width:82ch;line-height:1.55}
+ .prod{margin-top:38px}
+ .ph-head{display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px;flex-wrap:wrap}
+ .ph-num{font-family:"Space Grotesk";font-weight:700;color:#2e7dff;font-size:20px}
+ .ph-title{font-family:"Space Grotesk";font-weight:600;font-size:20px}
+ .ph-sub{color:#9aa3ad;font-size:13px}
+ .flag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:100px;margin-left:auto}
+ .good{background:rgba(37,211,102,.15);color:#4ade80;border:1px solid rgba(37,211,102,.35)}
+ .ctx{background:rgba(255,180,60,.12);color:#fbbf24;border:1px solid rgba(255,180,60,.35)}
+ .need{background:rgba(255,80,80,.12);color:#f87171;border:1px solid rgba(255,80,80,.35)}
+ .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:16px}
+ figure{background:#101216;border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden}
+ figure img{width:100%;height:190px;object-fit:cover;display:block;background:#1a1d22}
+ figcaption{padding:9px 12px;display:flex;align-items:center;gap:8px}
+ .pick{display:inline-block;background:#2e7dff;color:#fff;font-weight:700;border-radius:7px;padding:2px 9px;font-size:13px}
+ .desc{color:#c7ced6;font-size:12px}
+ .hint{color:#fbbf24;font-size:13px;margin-top:10px}
+</style></head><body>
+<h1>📸 Photo bank — pick the ones you like</h1>
+<p class="note">Reply with the codes you want (e.g. <b>"1a, 1b, 4a, 4b, 6a, 8a, 9a, 10a"</b>) — pick 1–3 per product and I'll make those cards slideshow. <b style="color:#4ade80">Green</b> = good real match · <b style="color:#fbbf24">Amber</b> = context only (not the exact part) · <b style="color:#f87171">Red</b> = no good stock exists, best to snap a quick phone photo at the factory (these are products only you have).</p>
+<div id="bank"></div>
+<script>
+const P=(id)=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600`;
+const products=[
+ {t:"Toyota Aqua Tail-Lamp Covers",sub:"Automotive",flag:"good",imgs:[[10849556,"Sleek red tail light"],[31471862,"Red LED tail light"],[32609652,"Tail light on white car"]]},
+ {t:"Motorcycle Mudguards",sub:"Motorcycle",flag:"ctx",hint:"Stock only has whole bikes, not the bare mudguard part. A factory photo of the actual part would be far better.",imgs:[[37131871,"Parked motorcycle"],[36729819,"Rear, red rims"],[2626668,"Sports motorcycle"]]},
+ {t:"Evaporative Air Cooler",sub:"Appliance",flag:"need",hint:"No good stock of a Pakistani room air cooler exists. Please snap one photo of a finished cooler at the factory — I'll wire it in.",imgs:[]},
+ {t:"Plastic Thermos / Water Bottles",sub:"Household",flag:"good",imgs:[[7690201,"Blue & red sport bottles"],[10035322,"Red & teal bottles"],[31511254,"White bottle, dark bg"]]},
+ {t:"Poultry Floor Mats",sub:"Agriculture",flag:"need",hint:"Only chickens-in-shed shots exist (below), not the plastic slat mat itself. A photo of your actual mat (even with hens on it) would be ideal.",imgs:[[27083552,"Modern poultry shed"],[35877057,"Poultry barn"],[17064389,"Broilers at feeder"]]},
+ {t:"Screw Caps & Closures",sub:"Packaging",flag:"good",imgs:[[18312161,"White caps, studio"],[3735204,"Colourful caps, top view"],[31115985,"Pile of white caps"]]},
+ {t:"Lids & Closures (FMCG)",sub:"FMCG",flag:"good",imgs:[[28248443,"White lids, blue light"],[10376368,"Blue caps pattern"]]},
+ {t:"Jugs & Cups",sub:"Household",flag:"good",imgs:[[14207017,"White plastic pitcher"],[15683362,"Jug & cups, amber"]]},
+ {t:"Material & Polymer",sub:"Capability",flag:"good",imgs:[[34286024,"Granules in hand"],[14745095,"Plastic pellets macro"]]},
+ {t:"Factory / Atmosphere",sub:"Hero & bento",flag:"good",imgs:[[14804699,"Moulding hall"],[34221993,"Production line"],[8865187,"Precision tooling"],[31352672,"Factory floor"]]},
+];
+const FL={good:["good","✓ good match"],ctx:["ctx","~ context only"],need:["need","✕ snap a photo"]};
+const L="abcdefgh";
+document.getElementById('bank').innerHTML=products.map((p,i)=>`
+ <div class="prod">
+   <div class="ph-head"><span class="ph-num">${i+1}</span><span class="ph-title">${p.t}</span><span class="ph-sub">${p.sub}</span><span class="flag ${FL[p.flag][0]}">${FL[p.flag][1]}</span></div>
+   ${p.imgs.length?`<div class="row">${p.imgs.map((im,j)=>`<figure><img loading="lazy" src="${P(im[0])}" alt="${im[1]}"/><figcaption><span class="pick">${i+1}${L[j]}</span><span class="desc">${im[1]}</span></figcaption></figure>`).join('')}</div>`:''}
+   ${p.hint?`<p class="hint">⚠ ${p.hint}</p>`:''}
+ </div>`).join('');
+</script>
+</body></html>

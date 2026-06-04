@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Rehman Industry">
+  <defs>
+    <linearGradient id="ri-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 2 58 17 58 47 32 62 6 47 6 17Z" fill="url(#ri-grad)"/>
+  <path d="M32 15 C40 27 45 32 45 39 A13 13 0 1 1 19 39 C19 32 24 27 32 15Z" fill="#ffffff"/>
+</svg>

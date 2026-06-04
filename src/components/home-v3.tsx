@@ -1,0 +1,400 @@
+"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { useEffect, useState } from "react";
+
+declare global {
+  interface Window { gsap: any; ScrollTrigger: any }
+}
+
+/* ------------------------------------------------------------------ data */
+const px = (p: string, w = 1800) => `https://images.pexels.com/photos/${p}?auto=compress&cs=tinysrgb&w=${w}`;
+const HERO = [
+  px("31352672/pexels-photo-31352672.jpeg"),
+  px("14804699/pexels-photo-14804699.jpeg"),
+  px("34221993/pexels-photo-34221993.jpeg"),
+  px("11765538/pexels-photo-11765538.jpeg"),
+];
+const PRODUCTS = [
+  { tag: "Automotive", title: "Toyota Aqua Tail-Lamp Covers", desc: "ABS / acrylic · multiple car models", imgs: ["taillamp-1", "taillamp-2"] },
+  { tag: "Motorcycle", title: "Motorcycle Mudguards", desc: "PP / ABS · impact-resistant body parts", imgs: ["mudguard-1", "mudguard-2"] },
+  { tag: "Appliance", title: "Air Cooler Bodies", desc: "Moulded cabinet, grille & tank", imgs: ["aircooler-1", "aircooler-2"] },
+  { tag: "Household", title: "Thermos & Water Bodies", desc: "Insulated plastic bodies", imgs: ["thermos-1", "thermos-2"] },
+  { tag: "Household", title: "Jugs & Cups", desc: "Glossy moulded housewares", imgs: ["jug-1", "jug-2"] },
+  { tag: "Agriculture", title: "Poultry Floor Mats", desc: "Plastic slat & rubber flooring", imgs: ["poultrymat-1", "poultrymat-2"] },
+  { tag: "Packaging", title: "Lids & Closures", desc: "Snap-fit, multi-cavity", imgs: ["lids-1", "lids-2"] },
+  { tag: "Electrical", title: "Instrument Boxes", desc: "ABS enclosures", imgs: ["enclosure-1", "enclosure-2"] },
+];
+const MARQUEE = ["INJECTION MOULDING", "TOOLING", "TAIL-LAMP COVERS", "MUDGUARDS", "AIR COOLERS", "THERMOS BODIES", "POULTRY MATS", "JUGS & CUPS", "CONTRACT MFG"];
+const STEPS = [
+  ["01", "Consultation & DFM", "We review your drawing, sample or idea and advise on material, design and the cleanest route to a good part."],
+  ["02", "Tooling & Mould", "We design and build (or adapt) the mould — engineered for accurate parts and a long, reliable life."],
+  ["03", "Sampling & Approval", "You sign off on sample parts and first-article checks before any volume runs."],
+  ["04", "Production", "We run your job at the volume you need, the same settings and checks on every batch."],
+  ["05", "Quality & Dispatch", "Every lot is inspected, packed and dispatched on schedule — across Pakistan or for export."],
+];
+
+function loadScript(src: string) {
+  return new Promise<void>((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) return resolve();
+    const s = document.createElement("script"); s.src = src; s.async = true;
+    s.onload = () => resolve(); s.onerror = () => reject();
+    document.head.appendChild(s);
+  });
+}
+
+export function HomeV3() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => { setTheme(((localStorage.getItem("ri-theme") as "light" | "dark") || "light")); }, []);
+  useEffect(() => { localStorage.setItem("ri-theme", theme); }, [theme]);
+
+  // hero + product slideshows (lightweight, no libs)
+  useEffect(() => {
+    const timers: number[] = [];
+    const hero = document.querySelectorAll<HTMLElement>(".v3 .heroimgs .hs");
+    if (hero.length > 1) { let h = 0; timers.push(window.setInterval(() => { hero[h].classList.remove("on"); h = (h + 1) % hero.length; hero[h].classList.add("on"); }, 4500)); }
+    document.querySelectorAll<HTMLElement>(".v3 .card").forEach((card) => {
+      const imgs = card.querySelectorAll<HTMLElement>(".cimg"); if (imgs.length < 2) return;
+      let i = 0; timers.push(window.setInterval(() => { imgs[i].classList.remove("on"); i = (i + 1) % imgs.length; imgs[i].classList.add("on"); }, 3200));
+    });
+    return () => timers.forEach(clearInterval);
+  }, []);
+
+  // GSAP (native scroll — no Lenis, to kill the lag)
+  useEffect(() => {
+    let cleanup = () => {};
+    (async () => {
+      try {
+        await loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js");
+        await loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js");
+        const gsap = window.gsap; const ScrollTrigger = window.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+        const hdr = document.getElementById("v3hdr");
+        ScrollTrigger.create({ start: 60, onUpdate: (s: { scroll: () => number }) => hdr?.classList.toggle("scrolled", s.scroll() > 60) });
+        gsap.to(".v3 h1 .ln span", { y: 0, duration: 1.1, stagger: 0.12, ease: "power4.out", delay: 0.15 });
+        gsap.from(".v3 [data-fade]", { y: 24, opacity: 0, duration: 0.9, stagger: 0.1, ease: "power3.out", delay: 0.5 });
+        gsap.utils.toArray(".v3 .reveal").forEach((el: unknown) =>
+          gsap.from(el as Element, { opacity: 0, y: 40, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: el as Element, start: "top 88%" } }));
+        gsap.utils.toArray(".v3 [data-count]").forEach((node: unknown) => {
+          const el = node as HTMLElement; const end = +(el.dataset.count || "0"); const suf = el.dataset.suf || "";
+          ScrollTrigger.create({ trigger: el, start: "top 90%", once: true, onEnter: () =>
+            gsap.to({ v: 0 }, { v: end, duration: 1.5, ease: "power2.out", onUpdate() { el.textContent = Math.round((this.targets()[0] as { v: number }).v) + suf; } }) });
+        });
+        const row = document.getElementById("prow");
+        if (row && window.innerWidth > 760) {
+          const dist = () => row.scrollWidth - window.innerWidth + 56;
+          gsap.to(row, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: "#work", start: "top top", end: () => "+=" + dist(), scrub: 0.5, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
+        }
+        initMachine(gsap);
+        cleanup = () => ScrollTrigger.getAll().forEach((t: { kill: () => void }) => t.kill());
+      } catch { /* CDN blocked — page still renders */ }
+    })();
+    return () => cleanup();
+  }, []);
+
+  return (
+    <div className="v3" data-theme={theme}>
+      <style dangerouslySetInnerHTML={{ __html: CSS }} />
+      <div className="bgfx" aria-hidden><div className="orb a" /><div className="orb b" /></div>
+
+      <header id="v3hdr">
+        <div className="nav">
+          <a className="brand" href="#top"><img className="logomark" src="/brand/mark.svg" alt="" width={32} height={32} />Rehman <b>Industry</b></a>
+          <nav className="navlinks"><a href="#how">Process</a><a href="#capability">Capability</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
+          <div className="navactions">
+            <button className="tgl" onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))} aria-label="Toggle theme">{theme === "light" ? "🌙" : "☀️"}</button>
+            <a className="btn" href="#contact">Get a quote →</a>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO — image slideshow + kinetic headline (the demo hero) */}
+      <section className="hero" id="top">
+        <div className="heroimgs">{HERO.map((src, i) => <div key={src} className={`hs${i === 0 ? " on" : ""}`} style={{ backgroundImage: `url('${src}')` }} />)}</div>
+        <div className="wrap heroinner">
+          <p className="eyebrow" data-fade>Gujranwala, Pakistan · Since 1985</p>
+          <h1 className="disp">
+            <span className="ln"><span>Precision plastic,</span></span>
+            <span className="ln"><span>moulded <em className="serif">at scale.</em></span></span>
+          </h1>
+          <p className="sub" data-fade>Contract injection moulding on Japanese Niigata &amp; Nissei presses — 80 to 385 tonnes — with four decades of experience behind every part.</p>
+          <div className="cta" data-fade>
+            <a className="btn lg" href="#contact">Start a project →</a>
+            <a className="btn lg ghost light" href="#work">See our work</a>
+          </div>
+        </div>
+        <div className="herometa"><div className="wrap"><span className="cue">Scroll ↓</span><span>40+ years · 4 presses · 80–385T · FBR registered</span></div></div>
+      </section>
+
+      <div className="marq"><div className="track">{[...MARQUEE, ...MARQUEE].map((w, i) => <span key={i}><b>{w}</b><i className="dot" /></span>)}</div></div>
+
+      {/* MACHINE — its own section */}
+      <section className="blk wrap machsec" id="how">
+        <div className="mach">
+          <div className="reveal">
+            <p className="eyebrow">How a part is made</p>
+            <h2 className="lead disp">The injection<br />moulding <em className="serif">cycle.</em></h2>
+            <p className="msub">Molten polymer, conveyed by a turning screw, injected into a steel mould under tonnes of clamp pressure, cooled, and ejected — the process we&apos;ve refined for 40 years.</p>
+            <div className="cta"><a className="btn" href="#contact">Get a quote →</a><a className="btn ghost" href="#work">See our work</a></div>
+          </div>
+          <div className="mpanel reveal"><Machine /></div>
+        </div>
+      </section>
+
+      {/* CAPABILITY */}
+      <section className="blk wrap" id="capability">
+        <p className="eyebrow reveal">What we run</p>
+        <h2 className="lead disp reveal">Built for <em className="serif">volume,</em> tuned for precision.</h2>
+        <div className="bento">
+          <div className="cell reveal"><div className="big" data-count="40" data-suf="+">0</div><small>Years moulding plastics</small></div>
+          <div className="cell reveal"><div className="big" data-count="4">0</div><small>Japanese presses</small></div>
+          <div className="cell span2 imgcell reveal"><img src="/products/aircooler-1.webp" alt="" /><div className="ov"><h4 className="disp">80 – 385 tonnes</h4><small>Clamping range — small parts to large housings</small></div></div>
+          <div className="cell span2 imgcell reveal"><img src="/products/enclosure-2.webp" alt="" /><div className="ov"><h4 className="disp">In-house tooling</h4><small>Mould design, build &amp; repair under one roof</small></div></div>
+          <div className="cell reveal"><div className="big" data-count="8" data-suf="+">0</div><small>Materials mastered</small></div>
+          <div className="cell reveal"><div className="big serif fbr">FBR</div><small>Registered business</small></div>
+        </div>
+      </section>
+
+      {/* WORK */}
+      <section className="ph" id="work">
+        <div className="wrap" style={{ paddingTop: 40 }}>
+          <p className="eyebrow reveal">Selected work</p>
+          <h2 className="lead disp reveal">Parts we <em className="serif">make.</em></h2>
+        </div>
+        <div className="row" id="prow">
+          {PRODUCTS.map((p) => (
+            <div className="card" key={p.title}>
+              <span className="tag">{p.tag}</span>
+              {p.imgs.map((im, j) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={im} className={`cimg${j === 0 ? " on" : ""}`} src={`/products/${im}.webp`} alt={p.title} loading="lazy" />
+              ))}
+              <div className="lab"><h4>{p.title}</h4><p>{p.desc}</p></div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className="blk wrap" id="process">
+        <p className="eyebrow reveal">How we work</p>
+        <h2 className="lead disp reveal">From sketch to <em className="serif">shipped.</em></h2>
+        <div className="steps">{STEPS.map((s) => <div className="step" key={s[0]}><div className="no">{s[0]}</div><div><h3>{s[1]}</h3><p>{s[2]}</p></div></div>)}</div>
+      </section>
+
+      {/* CTA */}
+      <section className="cta-big" id="contact"><div className="wrap">
+        <h2 className="disp">Let&apos;s make <em className="serif">your part.</em></h2>
+        <p>Send a drawing, a sample, or just a requirement. We usually reply within a business day.</p>
+        <div className="cta"><a className="btn lg wa" href="https://wa.me/923009642762">WhatsApp us</a><a className="btn lg ghost" href="tel:+923009642762">+92 300 9642762</a></div>
+      </div></section>
+
+      <footer><div className="wrap foot"><div>© Rehman Industry — Gujranwala, Pakistan</div><div>Plastic Injection Moulding · Tooling · Contract Manufacturing</div></div></footer>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------- machine svg */
+function Machine() {
+  return (
+    <>
+      <svg viewBox="0 0 600 340" fill="none">
+        <defs><clipPath id="bc"><rect x="46" y="178" width="186" height="44" rx="22" /></clipPath></defs>
+        <rect x="250" y="228" width="20" height="30" className="mb" /><rect x="498" y="228" width="44" height="30" className="mb" />
+        <rect x="24" y="256" width="552" height="58" rx="10" className="ms" /><line x1="40" y1="273" x2="560" y2="273" className="mb" />
+        <text x="280" y="330" className="ml" textAnchor="middle">Machine base · drives &amp; controls</text>
+        <path d="M44 200 v8 a14 14 0 0 0 14 14 h166 a14 14 0 0 0 14 -14 v-8" className="mb" />
+        <rect x="72" y="222" width="12" height="34" className="mb" /><rect x="196" y="222" width="12" height="34" className="mb" />
+        <line x1="262" y1="160" x2="520" y2="160" className="mb" /><line x1="262" y1="240" x2="520" y2="240" className="mb" />
+        <g id="gun">
+          <polygon points="88,96 150,96 136,140 102,140" className="ms" /><rect x="110" y="140" width="16" height="40" className="mb" />
+          <text x="118" y="86" className="ml" textAnchor="middle">Hopper</text>
+          <g id="hopperFill" fill="#566273" /><g id="feed" fill="#566273" />
+          <rect x="46" y="178" width="186" height="44" rx="22" className="ms" /><text x="135" y="240" className="ml" textAnchor="middle">Barrel · 230°C</text>
+          <rect x="150" y="174" width="9" height="52" rx="2" className="mb2" /><rect x="178" y="174" width="9" height="52" rx="2" className="mb2" /><rect x="206" y="174" width="9" height="52" rx="2" className="mb2" />
+          <g clipPath="url(#bc)"><line x1="40" y1="200" x2="232" y2="200" stroke="#56657a" strokeWidth="11" strokeLinecap="round" /><g id="flights" stroke="#6aa8ff" strokeWidth="2" opacity=".85" /></g>
+          <polygon id="nozzle" points="232,193 246,200 232,207" className="mb2" />
+        </g>
+        <rect id="shot" x="268" y="197" width="34" height="6" rx="3" fill="#ff9a4d" opacity="0" />
+        <rect x="256" y="150" width="12" height="100" rx="3" className="mb2" />
+        <g><rect x="268" y="172" width="46" height="56" rx="3" className="ms" /><path d="M314 190 h-14 a8 8 0 0 0 -8 8 v4 a8 8 0 0 0 8 8 h14 z" fill="#0d1219" stroke="#37424f" strokeWidth="1" /></g>
+        <text x="316" y="262" className="ml" textAnchor="middle">Mould</text>
+        <g id="part" opacity="0"><path d="M302 191 h20 a7 7 0 0 1 7 7 v4 a7 7 0 0 1 -7 7 h-20 a4 4 0 0 1 -4 -4 v-10 a4 4 0 0 1 4 -4 z" fill="#2e7dff" /><rect x="322" y="194" width="8" height="12" rx="2" fill="#6aa8ff" /></g>
+        <g id="moving"><rect x="314" y="172" width="46" height="56" rx="3" fill="rgba(46,125,255,.08)" stroke="#2e7dff" strokeWidth="1.6" /><rect x="360" y="150" width="12" height="100" rx="3" className="mb2" /><g id="ejector" fill="#56657a"><rect x="314" y="195.5" width="0" height="3.4" rx="1.5" /><rect x="314" y="201.5" width="0" height="3.4" rx="1.5" /></g></g>
+        <text x="504" y="150" className="ml" textAnchor="middle">Hydraulic ram</text>
+        <rect id="rod" x="372" y="192" width="98" height="16" rx="4" fill="#56657a" />
+        <rect x="463" y="185" width="10" height="30" rx="2" className="mb2" /><rect x="470" y="174" width="84" height="52" rx="13" className="ms" />
+        <line x1="492" y1="176" x2="492" y2="224" className="mb" /><line x1="514" y1="176" x2="514" y2="224" className="mb" /><rect x="554" y="168" width="10" height="64" rx="3" className="mb2" />
+        <text x="474" y="60" className="ml" textAnchor="middle">Pressure</text>
+        <path d="M448 94 A26 26 0 0 1 500 94" stroke="#222a35" strokeWidth="6" fill="none" strokeLinecap="round" />
+        <path id="gaugeFill" d="M448 94 A26 26 0 0 1 500 94" stroke="#2e7dff" strokeWidth="6" fill="none" strokeLinecap="round" strokeDasharray="82" strokeDashoffset="82" />
+        <line id="needle" x1="474" y1="94" x2="474" y2="72" stroke="#6aa8ff" strokeWidth="2.5" strokeLinecap="round" /><circle cx="474" cy="94" r="4" fill="#56657a" />
+      </svg>
+      <div className="barfoot">
+        <div className="stage" id="stage">1 · <b>Mould clamps shut</b></div>
+        <div className="mdots"><span className="mdot on" /><span className="mdot" /><span className="mdot" /><span className="mdot" /><span className="mdot" /></div>
+        <div className="read"><b id="pr">0</b> bar</div>
+      </div>
+    </>
+  );
+}
+
+/* ----------------------------------------------------- machine animation */
+function initMachine(gsap: any) {
+  const NS = "http://www.w3.org/2000/svg";
+  const C = (cx: number, cy: number, r: number) => { const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", String(cx)); c.setAttribute("cy", String(cy)); c.setAttribute("r", String(r)); return c; };
+  const hf = document.getElementById("hopperFill"); if (!hf) return;
+  for (let y = 104; y <= 134; y += 7) { const w = (y - 96) * 0.4; for (let x = 119 - (18 - w); x <= 119 + (18 - w); x += 7) hf.appendChild(C(x + (Math.random() * 2 - 1), y, 2.6)); }
+  const feed = document.getElementById("feed")!;
+  for (let i = 0; i < 3; i++) { const c = C(114 + Math.random() * 8, 150, 2.6); c.setAttribute("fill", "#566273"); feed.appendChild(c); gsap.to(c, { y: 30, duration: 1.6, delay: i * 0.55, repeat: -1, ease: "power1.in", onRepeat() { c.setAttribute("cx", String(114 + Math.random() * 8)); } }); }
+  const fl = document.getElementById("flights")!;
+  for (let x = 40; x <= 250; x += 16) { const l = document.createElementNS(NS, "line"); l.setAttribute("x1", String(x)); l.setAttribute("y1", "189"); l.setAttribute("x2", String(x + 8)); l.setAttribute("y2", "211"); fl.appendChild(l); }
+  gsap.to("#flights", { x: 16, duration: 0.7, repeat: -1, ease: "none" });
+  const stages = ["1 · <b>Mould clamps shut</b>", "2 · <b>Unit forward + inject</b>", "3 · <b>Hold &amp; cool</b>", "4 · <b>Mould opens</b>", "5 · <b>Part ejected</b>"];
+  const dots = document.querySelectorAll(".v3 .mdot");
+  const setStage = (i: number) => { const s = document.getElementById("stage"); if (s) s.innerHTML = stages[i]; dots.forEach((d, j) => d.classList.toggle("on", j === i)); };
+  const PR = document.getElementById("pr"); const prObj = { v: 0 }; const setPr = () => { if (PR) PR.textContent = String(Math.round(prObj.v)); };
+  gsap.set("#needle", { svgOrigin: "474 94" }); gsap.set("#shot", { svgOrigin: "268 200" }); gsap.set("#rod", { svgOrigin: "470 200" });
+  function reset() {
+    gsap.set("#part", { opacity: 0, x: 0, y: 0, rotation: 0, fill: "#ff9a4d" }); gsap.set("#ejector rect", { attr: { x: 314, width: 0 } });
+    gsap.set("#moving", { x: 70 }); gsap.set("#rod", { scaleX: 0.3 }); gsap.set("#gun", { x: 0 });
+    gsap.set("#shot", { opacity: 0, scaleX: 0 }); gsap.set("#needle", { rotation: -90 }); gsap.set("#gaugeFill", { strokeDashoffset: 82 }); prObj.v = 0; setPr();
+  }
+  function build() {
+    const tl = gsap.timeline({ onComplete() { reset(); build(); } });
+    tl.call(() => setStage(0))
+      .to("#moving", { x: 0, duration: 1.2, ease: "power2.inOut" }, 0).to("#rod", { scaleX: 1, duration: 1.2, ease: "power2.inOut" }, 0).to({}, { duration: 0.25 })
+      .call(() => setStage(1))
+      .to("#gun", { x: 14, duration: 0.6, ease: "power2.out" }, "fwd").to("#nozzle", { fill: "#ff9a4d", duration: 0.3 }, "fwd+=0.3")
+      .fromTo("#shot", { opacity: 1, scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.out" }, "fwd+=0.4")
+      .to("#part", { opacity: 1, duration: 0.6 }, "fwd+=0.7")
+      .to(prObj, { v: 1400, duration: 1.3, ease: "power2.out", onUpdate: setPr }, "fwd+=0.4")
+      .to("#gaugeFill", { strokeDashoffset: 24, duration: 1.3, ease: "power2.out" }, "fwd+=0.4")
+      .to("#needle", { rotation: 60, duration: 1.3, ease: "power2.out" }, "fwd+=0.4").to("#shot", { opacity: 0, duration: 0.3 })
+      .call(() => setStage(2))
+      .to("#part", { fill: "#2e7dff", duration: 1.0 }).to("#gun", { x: 0, duration: 0.7, ease: "power1.inOut" }, "<")
+      .to(prObj, { v: 0, duration: 1.1, onUpdate: setPr }, "<").to("#gaugeFill", { strokeDashoffset: 82, duration: 1.1 }, "<")
+      .to("#needle", { rotation: -90, duration: 1.1, ease: "power2.inOut" }, "<").to("#nozzle", { fill: "#56657a", duration: 0.5 }, "<").to({}, { duration: 0.4 })
+      .call(() => setStage(3))
+      .to("#moving", { x: 70, duration: 1.2, ease: "power2.inOut" }).to("#part", { x: 70, duration: 1.2, ease: "power2.inOut" }, "<").to("#rod", { scaleX: 0.3, duration: 1.2, ease: "power2.inOut" }, "<")
+      .call(() => setStage(4))
+      .to("#ejector rect", { attr: { x: 298, width: 16 }, duration: 0.4, ease: "power2.out" })
+      .to("#part", { x: 50, y: 118, opacity: 0, rotation: 10, duration: 1.0, ease: "power1.in" }, "<.08")
+      .to("#ejector rect", { attr: { x: 314, width: 0 }, duration: 0.3 }).to({}, { duration: 0.6 });
+  }
+  reset(); build();
+}
+
+/* ------------------------------------------------------------------- css */
+const CSS = `
+.v3{--bg:#ffffff;--bg2:#f5f7fa;--ink:#0d1117;--muted:#5b6573;--line:rgba(12,17,28,.10);--blue:#1d4ed8;--blue2:#2563eb;--card:#ffffff;--orb:.14;
+  position:relative;background:var(--bg);color:var(--ink);font-family:var(--font-hanken),Inter,sans-serif;overflow-x:hidden}
+.v3[data-theme="dark"]{--bg:#0a0b0d;--bg2:#101216;--ink:#f4f6f8;--muted:#9aa3ad;--line:rgba(255,255,255,.10);--blue:#2e7dff;--blue2:#6aa8ff;--card:#101216;--orb:.4}
+.v3 *{box-sizing:border-box}
+.v3 a{color:inherit;text-decoration:none}
+.v3 .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.v3 .disp{font-weight:700;letter-spacing:-.03em;line-height:.98}
+.v3 .serif{font-family:var(--font-instrument-serif),serif;font-style:italic;font-weight:400;color:var(--blue2)}
+.v3 .eyebrow{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--blue2);font-weight:600}
+/* perf: fixed bg, lighter blur */
+.v3 .bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.v3 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--orb);will-change:transform}
+.v3 .orb.a{width:420px;height:420px;background:#3b82f6;top:-140px;left:-60px}
+.v3 .orb.b{width:460px;height:460px;background:#1d4ed8;bottom:-160px;right:-120px}
+.v3>section,.v3>header,.v3>.marq,.v3>footer{position:relative;z-index:2}
+/* nav */
+.v3 #v3hdr{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s}
+.v3 #v3hdr.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.v3 .nav{display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:0 auto;padding:16px 28px}
+.v3 .brand{font-weight:600;font-size:19px;letter-spacing:-.02em;color:#fff;display:inline-flex;align-items:center;gap:10px}
+.v3 .logomark{width:32px;height:32px;border-radius:9px;display:block}
+.v3 #v3hdr.scrolled .brand{color:var(--ink)}
+.v3 .brand b{color:#6aa8ff}.v3 #v3hdr.scrolled .brand b{color:var(--blue2)}
+.v3 .navlinks{display:flex;gap:28px;font-size:14px;font-weight:500;color:rgba(255,255,255,.8)}
+.v3 #v3hdr.scrolled .navlinks{color:var(--muted)}
+.v3 .navlinks a:hover{color:#fff}.v3 #v3hdr.scrolled .navlinks a:hover{color:var(--ink)}
+.v3 .navactions{display:flex;align-items:center;gap:12px}
+.v3 .tgl{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:100px;width:38px;height:38px;cursor:pointer;font-size:15px}
+.v3 #v3hdr.scrolled .tgl{background:none;border-color:var(--line);color:var(--ink)}
+.v3 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:600;transition:.3s;border:1px solid transparent;cursor:pointer}
+.v3 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px var(--blue)}
+.v3 .btn.lg{padding:15px 26px;font-size:15px}
+.v3 .btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.v3 .btn.ghost.light{border-color:rgba(255,255,255,.4);color:#fff}
+.v3 .btn.wa{background:#25D366}
+@media(max-width:860px){.v3 .navlinks{display:none}}
+/* hero */
+.v3 .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+.v3 .heroimgs{position:absolute;inset:0;z-index:0}
+.v3 .hs{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease}
+.v3 .hs.on{opacity:1}
+.v3 .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(6,8,11,.95),rgba(6,8,11,.4) 50%,rgba(6,8,11,.7))}
+.v3 .heroinner{position:relative;z-index:2;padding-bottom:90px;padding-top:130px}
+.v3 .hero h1{font-size:clamp(46px,8.5vw,116px);font-weight:700;margin-top:18px;color:#fff}
+.v3 .hero h1 .ln{display:block;overflow:hidden}.v3 .hero h1 .ln span{display:block;transform:translateY(110%)}
+.v3 .hero .sub{max-width:46ch;color:#dfe5ec;font-size:clamp(16px,1.6vw,19px);margin-top:24px;line-height:1.6}
+.v3 .hero .cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.v3 .herometa{position:absolute;bottom:28px;left:0;right:0;z-index:2}
+.v3 .herometa .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.7);font-size:13px}
+.v3 .cue{letter-spacing:.2em;text-transform:uppercase;font-size:11px}
+/* marquee */
+.v3 .marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
+.v3 .track{display:inline-flex;gap:46px;animation:v3scroll 34s linear infinite}
+.v3 .track span{font-size:clamp(20px,2.6vw,36px);font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:46px;opacity:.5}
+.v3 .track b{color:var(--ink);font-weight:600}.v3 .track .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);display:inline-block}
+@keyframes v3scroll{to{transform:translateX(-50%)}}
+/* sections */
+.v3 .blk{padding:110px 0}
+.v3 .lead{font-size:clamp(30px,4.4vw,58px);font-weight:700;max-width:16ch;margin-top:16px}
+.v3 .reveal{}
+/* machine */
+.v3 .machsec{padding:100px 0}
+.v3 .mach{display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:48px}
+@media(max-width:940px){.v3 .mach{grid-template-columns:1fr;gap:30px}}
+.v3 .msub{color:var(--muted);font-size:18px;line-height:1.6;margin-top:20px;max-width:46ch}
+.v3 .mach .cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.v3 .mpanel{background:linear-gradient(160deg,#10203f,#0a0b0d);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:20px}
+.v3 .mpanel svg{width:100%;height:auto;display:block}
+.v3 .mb{fill:none;stroke:#37424f;stroke-width:1.5}.v3 .mb2{fill:none;stroke:#56657a;stroke-width:1.5}.v3 .ms{fill:rgba(255,255,255,.02);stroke:#37424f;stroke-width:1.5}
+.v3 .ml{font-size:9.5px;fill:#8b95a1;letter-spacing:.08em;text-transform:uppercase}
+.v3 .barfoot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)}
+.v3 .stage{font-weight:600;font-size:15px;color:#eef2f6}.v3 .stage b{color:#6aa8ff}
+.v3 .mdots{display:flex;gap:6px}.v3 .mdot{width:20px;height:4px;border-radius:4px;background:#222a35}.v3 .mdot.on{background:#2e7dff}
+.v3 .read{font-size:12px;color:#8b95a1}.v3 .read b{color:#eef2f6}
+/* bento */
+.v3 .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:50px}
+.v3 .cell{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;transition:.3s;position:relative;overflow:hidden}
+.v3 .cell:hover{border-color:color-mix(in srgb,var(--blue) 45%,transparent);transform:translateY(-4px)}
+.v3 .cell .big{font-size:clamp(38px,5vw,60px);font-weight:700;letter-spacing:-.03em;color:var(--blue2)}
+.v3 .cell .big.fbr{font-style:italic}.v3 .cell small{color:var(--muted);font-size:14px}
+.v3 .cell.span2{grid-column:span 2}
+.v3 .imgcell{padding:0;justify-content:flex-end}
+.v3 .imgcell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v3 .imgcell .ov{position:relative;padding:26px;background:linear-gradient(to top,rgba(8,10,14,.92),rgba(8,10,14,.15) 70%);width:100%}
+.v3 .imgcell h4{font-size:24px;color:#fff}.v3 .imgcell small{color:#cdd5de}
+@media(max-width:860px){.v3 .bento{grid-template-columns:repeat(2,1fr)}}
+/* work */
+.v3 .ph{overflow:hidden;background:var(--bg)}
+.v3 .row{display:flex;gap:24px;padding:40px 28px;will-change:transform}
+.v3 .card{position:relative;flex:0 0 auto;width:clamp(260px,32vw,400px);height:clamp(340px,44vw,520px);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#0a0b0d}
+.v3 .card .cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.v3 .card .cimg.on{opacity:1}
+.v3 .card .lab{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(to top,rgba(7,9,12,.94),rgba(7,9,12,.1) 58%);z-index:2}
+.v3 .card .lab h4{font-size:23px;font-weight:600;color:#fff}.v3 .card .lab p{color:#aeb6c0;font-size:14px;margin-top:6px}
+.v3 .card .tag{position:absolute;top:16px;left:16px;z-index:3;background:rgba(46,125,255,.18);border:1px solid rgba(46,125,255,.45);color:#cde0ff;font-size:12px;padding:5px 12px;border-radius:100px}
+/* steps */
+.v3 .steps{margin-top:46px;border-top:1px solid var(--line)}
+.v3 .step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:34px 0;border-bottom:1px solid var(--line);transition:.3s}
+.v3 .step:hover{padding-left:12px}
+.v3 .step .no{font-size:28px;font-weight:700;color:var(--muted);opacity:.5;transition:.3s}.v3 .step:hover .no{color:var(--blue2);opacity:1}
+.v3 .step h3{font-size:clamp(21px,2.8vw,30px);font-weight:600}
+.v3 .step p{color:var(--muted);margin-top:8px;max-width:62ch;line-height:1.6}
+/* cta */
+.v3 .cta-big{padding:130px 0;text-align:center}
+.v3 .cta-big h2{font-size:clamp(40px,7vw,104px);font-weight:700}
+.v3 .cta-big p{color:var(--muted);margin:22px auto 0;max-width:46ch;font-size:18px}
+.v3 .cta-big .cta{justify-content:center;display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.v3 footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted);font-size:14px}
+.v3 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+`;
