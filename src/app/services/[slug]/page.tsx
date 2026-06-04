@@ -79,7 +79,7 @@ export default async function ServicePage({
             <ul className="mt-6 grid gap-4 sm:grid-cols-2">
               {service.features.map((f) => (
                 <li key={f} className="flex items-start gap-2.5">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
                   <span className="text-neutral-700">{f}</span>
                 </li>
               ))}
@@ -98,7 +98,7 @@ export default async function ServicePage({
               <div className="mt-5 flex flex-col gap-2.5">
                 <Link
                   href="/contact"
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700"
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-medium text-white hover:bg-orange-600"
                 >
                   Request a quote
                 </Link>
@@ -130,7 +130,7 @@ export default async function ServicePage({
           <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {processSteps.map((p, i) => (
               <li key={p.title} className="rounded-2xl bg-white p-6 shadow-sm">
-                <div className="text-sm font-semibold text-blue-600">0{i + 1}</div>
+                <div className="text-sm font-semibold text-orange-500">0{i + 1}</div>
                 <h3 className="mt-3 font-semibold">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">
                   {p.desc}
@@ -160,7 +160,7 @@ export default async function ServicePage({
               <div>
                 <h3 className="font-semibold">{r.title}</h3>
                 <p className="mt-1 text-sm text-neutral-600">{r.short}</p>
-                <span className="mt-1.5 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                <span className="mt-1.5 inline-flex items-center gap-1 text-sm font-medium text-orange-500">
                   Learn more <ArrowRight className="h-4 w-4" />
                 </span>
               </div>

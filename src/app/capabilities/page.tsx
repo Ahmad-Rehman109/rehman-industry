@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Capabilities | Rehman Industry", url: "/capabilities" },
 };
 
-const numColor = ["text-blue-600", "text-amber-600", "text-emerald-600", "text-rose-600"];
+const numColor = ["text-orange-500", "text-amber-600", "text-emerald-600", "text-rose-600"];
 
 const secondary = [
   "Assembly of multi-part components",
@@ -111,7 +111,7 @@ export default function CapabilitiesPage() {
             <ul className="mt-6 space-y-3">
               {secondary.map((s) => (
                 <li key={s} className="flex items-start gap-2.5">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
                   <span className="text-neutral-700">{s}</span>
                 </li>
               ))}
@@ -128,7 +128,7 @@ export default function CapabilitiesPage() {
             <ul className="mt-6 space-y-3">
               {quality.map((q) => (
                 <li key={q} className="flex items-start gap-2.5">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
                   <span className="text-neutral-700">{q}</span>
                 </li>
               ))}

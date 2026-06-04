@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export type Crumb = { name: string; href?: string };
 
+/** Themed page hero used on every subpage — dark with molten-orange accent. */
 export function PageHero({
   eyebrow,
   title,
@@ -23,15 +24,15 @@ export function PageHero({
       <img
         src={image}
         alt={imageAlt}
-        className="h-[46vh] min-h-[340px] w-full object-cover"
+        className="h-[52vh] min-h-[380px] w-full object-cover"
         loading="eager"
       />
-      <div className="absolute inset-0 bg-neutral-950/70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/95 via-neutral-950/70 to-neutral-950/50" />
       <div className="absolute inset-0 flex items-end">
-        <div className="mx-auto w-full max-w-7xl px-5 pb-10 sm:px-8 lg:pb-14">
+        <div className="mx-auto w-full max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:pb-16">
           {crumbs && crumbs.length > 0 && (
             <nav aria-label="Breadcrumb" className="mb-4">
-              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
+              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/55">
                 {crumbs.map((c, i) => (
                   <li key={c.name} className="inline-flex items-center gap-1.5">
                     {c.href ? (
@@ -48,11 +49,14 @@ export function PageHero({
             </nav>
           )}
           {eyebrow && (
-            <p className="mb-3 text-sm font-medium uppercase tracking-wide text-blue-300">
+            <p
+              className="mb-3 text-xs font-semibold uppercase tracking-[0.28em]"
+              style={{ color: "#ff9d3c" }}
+            >
               {eyebrow}
             </p>
           )}
-          <h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl">
+          <h1 className="max-w-3xl text-4xl font-bold leading-[1.02] tracking-tight text-white sm:text-6xl">
             {title}
           </h1>
           {description && (

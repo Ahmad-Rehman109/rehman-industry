@@ -71,7 +71,7 @@ export default function AboutPage() {
               <dl className="mt-4 space-y-4">
                 {facts.map((f) => (
                   <div key={f.label} className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-orange-500">
                       <f.Icon className="h-5 w-5" />
                     </span>
                     <div>
@@ -109,7 +109,7 @@ export default function AboutPage() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {whyUs.map((v) => (
             <div key={v.title} className="rounded-3xl border border-neutral-200 p-6">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-orange-500">
                 <v.Icon className="h-5 w-5" />
               </span>
               <h3 className="mt-4 font-semibold">{v.title}</h3>

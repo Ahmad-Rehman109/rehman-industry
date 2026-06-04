@@ -49,24 +49,24 @@ export default function ContactPage() {
               <h2 className="text-lg font-semibold">Reach us directly</h2>
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
-                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
                   <span className="text-neutral-700">{formattedAddress()}</span>
                 </li>
                 <li>
                   <a
                     href={`tel:${site.phoneHref}`}
-                    className="flex items-center gap-3 text-neutral-700 hover:text-blue-600"
+                    className="flex items-center gap-3 text-neutral-700 hover:text-orange-500"
                   >
-                    <Phone className="h-5 w-5 shrink-0 text-blue-600" />
+                    <Phone className="h-5 w-5 shrink-0 text-orange-500" />
                     {site.phone}
                   </a>
                 </li>
                 <li>
                   <a
                     href={`mailto:${site.email}`}
-                    className="flex items-center gap-3 text-neutral-700 hover:text-blue-600"
+                    className="flex items-center gap-3 text-neutral-700 hover:text-orange-500"
                   >
-                    <Mail className="h-5 w-5 shrink-0 text-blue-600" />
+                    <Mail className="h-5 w-5 shrink-0 text-orange-500" />
                     {site.email}
                   </a>
                 </li>
@@ -77,14 +77,14 @@ export default function ContactPage() {
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-neutral-700 hover:text-blue-600"
+                    className="flex items-center gap-3 text-neutral-700 hover:text-orange-500"
                   >
                     <MessageCircle className="h-5 w-5 shrink-0 text-[#25D366]" />
                     Message on WhatsApp
                   </a>
                 </li>
                 <li className="flex gap-3">
-                  <Clock className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <Clock className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
                   <span className="text-neutral-700">
                     {site.hours[0].days}
                     <br />

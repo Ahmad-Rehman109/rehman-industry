@@ -6,6 +6,7 @@ const company = [
   { label: "About", href: "/about" },
   { label: "Capabilities", href: "/capabilities" },
   { label: "Industries", href: "/industries" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
@@ -13,11 +14,13 @@ const company = [
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-neutral-950 text-neutral-400">
+    <footer className="border-t border-white/10 bg-neutral-950 text-neutral-400">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link href="/" className="text-lg font-semibold text-white">
-            Rehman <span className="text-blue-400">Industry</span>
+          <Link href="/" className="inline-flex items-center gap-2.5 text-lg font-semibold text-white">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/mark.svg" alt="" width={28} height={28} className="rounded-md" />
+            Rehman <span style={{ color: "#ff7a18" }}>Industry</span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
             Precision plastic injection moulding &amp; contract manufacturing in
@@ -38,7 +41,11 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link href="/services" className="text-blue-400 hover:text-blue-300">
+              <Link
+                href="/services"
+                className="font-medium hover:text-white"
+                style={{ color: "#ff9d3c" }}
+              >
                 All services →
               </Link>
             </li>

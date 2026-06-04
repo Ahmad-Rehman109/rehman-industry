@@ -66,7 +66,7 @@ export default function ServicesPage() {
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">
                   {s.short}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-orange-500">
                   Learn more
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </span>
@@ -87,7 +87,7 @@ export default function ServicesPage() {
           <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {processSteps.map((p, i) => (
               <li key={p.title} className="rounded-2xl bg-white p-6 shadow-sm">
-                <div className="text-sm font-semibold text-blue-600">0{i + 1}</div>
+                <div className="text-sm font-semibold text-orange-500">0{i + 1}</div>
                 <h3 className="mt-3 font-semibold">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">
                   {p.desc}

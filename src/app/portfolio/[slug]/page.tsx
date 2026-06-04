@@ -101,7 +101,7 @@ export default async function ProjectPage({
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {project.features.map((f, i) => (
               <div key={f} className="rounded-2xl bg-white p-6 shadow-sm">
-                <div className="text-sm font-semibold text-blue-600">
+                <div className="text-sm font-semibold text-orange-500">
                   0{i + 1}
                 </div>
                 <p className="mt-3 leading-relaxed text-neutral-700">{f}</p>
@@ -130,7 +130,7 @@ export default async function ProjectPage({
       {project.testimonial && (
         <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8">
           <figure className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm">
-            <Quote className="h-8 w-8 text-blue-600" />
+            <Quote className="h-8 w-8 text-orange-500" />
             <blockquote className="mt-4 text-xl font-medium leading-relaxed text-neutral-800">
               “{project.testimonial.quote}”
             </blockquote>
@@ -167,7 +167,7 @@ export default async function ProjectPage({
         <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+            className="inline-flex items-center gap-1 text-sm font-medium text-orange-500"
           >
             ← Back to all projects
           </Link>

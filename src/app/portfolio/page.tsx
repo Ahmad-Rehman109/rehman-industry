@@ -36,7 +36,7 @@ export default function PortfolioPage() {
           <strong>automotive clips</strong>,{" "}
           <strong>electrical enclosures</strong> and{" "}
           <strong>medical components</strong>. Have something similar in mind?{" "}
-          <Link href="/contact" className="text-blue-600 underline-offset-4 hover:underline">
+          <Link href="/contact" className="text-orange-500 underline-offset-4 hover:underline">
             Tell us about it
           </Link>
           .
@@ -61,14 +61,14 @@ export default function PortfolioPage() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs font-semibold uppercase tracking-wide text-blue-600">
+                <span className="text-xs font-semibold uppercase tracking-wide text-orange-500">
                   {p.industry}
                 </span>
                 <h2 className="mt-2 text-xl font-semibold">{p.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">
                   {p.summary}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-orange-500">
                   View project
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </span>
