@@ -4,6 +4,7 @@ import "./globals.css";
 import { JsonLd, localBusinessSchema, websiteSchema } from "@/lib/jsonld";
 import { site } from "@/lib/site";
 import { SiteChrome } from "@/components/site-chrome";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
@@ -84,6 +85,7 @@ export default function RootLayout({
       className={`${hanken.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans antialiased">
+        <SmoothScroll />
         <SiteChrome>{children}</SiteChrome>
         <JsonLd data={localBusinessSchema()} />
         <JsonLd data={websiteSchema()} />

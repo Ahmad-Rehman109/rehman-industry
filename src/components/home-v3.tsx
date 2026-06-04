@@ -9,22 +9,18 @@ declare global {
 
 /* ------------------------------------------------------------------ data */
 const px = (p: string, w = 1800) => `https://images.pexels.com/photos/${p}?auto=compress&cs=tinysrgb&w=${w}`;
+/** Hero slideshow — your real factory hero images (Gemini-generated). */
 const HERO = [
-  px("31352672/pexels-photo-31352672.jpeg"),
-  px("14804699/pexels-photo-14804699.jpeg"),
-  px("34221993/pexels-photo-34221993.jpeg"),
-  px("11765538/pexels-photo-11765538.jpeg"),
+  "/products/hero-1.webp",
+  "/products/hero-2.webp",
+  "/products/hero-3.webp",
+  "/products/hero-4.webp",
+  "/products/hero-5.webp",
+  "/products/hero-6.webp",
+  "/products/hero-7.webp",
+  "/products/hero-8.webp",
 ];
-const PRODUCTS = [
-  { tag: "Automotive", title: "Toyota Aqua Tail-Lamp Covers", desc: "ABS / acrylic · multiple car models", imgs: ["taillamp-1", "taillamp-2"] },
-  { tag: "Motorcycle", title: "Motorcycle Mudguards", desc: "PP / ABS · impact-resistant body parts", imgs: ["mudguard-1", "mudguard-2"] },
-  { tag: "Appliance", title: "Air Cooler Bodies", desc: "Moulded cabinet, grille & tank", imgs: ["aircooler-1", "aircooler-2"] },
-  { tag: "Household", title: "Thermos & Water Bodies", desc: "Insulated plastic bodies", imgs: ["thermos-1", "thermos-2"] },
-  { tag: "Household", title: "Jugs & Cups", desc: "Glossy moulded housewares", imgs: ["jug-1", "jug-2"] },
-  { tag: "Agriculture", title: "Poultry Floor Mats", desc: "Plastic slat & rubber flooring", imgs: ["poultrymat-1", "poultrymat-2"] },
-  { tag: "Packaging", title: "Lids & Closures", desc: "Snap-fit, multi-cavity", imgs: ["lids-1", "lids-2"] },
-  { tag: "Electrical", title: "Instrument Boxes", desc: "ABS enclosures", imgs: ["enclosure-1", "enclosure-2"] },
-];
+import { products as PRODUCTS } from "@/lib/products";
 const MARQUEE = ["INJECTION MOULDING", "TOOLING", "TAIL-LAMP COVERS", "MUDGUARDS", "AIR COOLERS", "THERMOS BODIES", "POULTRY MATS", "JUGS & CUPS", "CONTRACT MFG"];
 const STEPS = [
   ["01", "Consultation & DFM", "We review your drawing, sample or idea and advise on material, design and the cleanest route to a good part."],
@@ -70,7 +66,10 @@ export function HomeV3() {
     return () => timers.forEach(clearInterval);
   }, []);
 
-  // GSAP (native scroll — no Lenis, to kill the lag)
+  // GSAP + Lenis — smooth scroll that made the demo feel cinematic.
+  // Lenis is disabled on mobile (touch already has native momentum) and when
+  // the user prefers-reduced-motion. The lag we hunted earlier was the GSAP
+  // pin, not Lenis — so this stays in.
   useEffect(() => {
     let cleanup = () => {};
     (async () => {
@@ -79,10 +78,21 @@ export function HomeV3() {
         await loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js");
         const gsap = window.gsap; const ScrollTrigger = window.ScrollTrigger;
         gsap.registerPlugin(ScrollTrigger);
+
+        // Global Lenis runs in <SmoothScroll /> in the layout. Tie ScrollTrigger
+        // to native scroll — read off window each tick so it's safe across HMR
+        // and never throws if the global hasn't latched yet.
+        const onScroll = () => { window.ScrollTrigger?.update?.(); };
+        window.addEventListener("scroll", onScroll, { passive: true });
         const hdr = document.getElementById("v3hdr");
         ScrollTrigger.create({ start: 60, onUpdate: (s: { scroll: () => number }) => hdr?.classList.toggle("scrolled", s.scroll() > 60) });
         gsap.to(".v3 h1 .ln span", { y: 0, duration: 1.1, stagger: 0.12, ease: "power4.out", delay: 0.15 });
         gsap.from(".v3 [data-fade]", { y: 24, opacity: 0, duration: 0.9, stagger: 0.1, ease: "power3.out", delay: 0.5 });
+        // Hero image parallax — the depth touch from the demo
+        gsap.to(".v3 .heroimgs", {
+          yPercent: 16, ease: "none",
+          scrollTrigger: { trigger: ".v3 .hero", start: "top top", end: "bottom top", scrub: true },
+        });
         gsap.utils.toArray(".v3 .reveal").forEach((el: unknown) =>
           gsap.from(el as Element, { opacity: 0, y: 40, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: el as Element, start: "top 88%" } }));
         gsap.utils.toArray(".v3 [data-count]").forEach((node: unknown) => {
@@ -90,13 +100,35 @@ export function HomeV3() {
           ScrollTrigger.create({ trigger: el, start: "top 90%", once: true, onEnter: () =>
             gsap.to({ v: 0 }, { v: end, duration: 1.5, ease: "power2.out", onUpdate() { el.textContent = Math.round((this.targets()[0] as { v: number }).v) + suf; } }) });
         });
+        // Horizontal pin-scroll on the products row (desktop only). Smooth setup:
+        //   scrub: 1.5  -> rounded easing, no stop/resume hiccup
+        //   anticipatePin: 0  -> no 1-frame snap on entry
+        //   ScrollTrigger.normalizeScroll(true)  -> consistent wheel/touch input
         const row = document.getElementById("prow");
-        if (row && window.innerWidth > 760) {
-          const dist = () => row.scrollWidth - window.innerWidth + 56;
-          gsap.to(row, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: "#work", start: "top top", end: () => "+=" + dist(), scrub: 0.5, pin: true, anticipatePin: 1, invalidateOnRefresh: true } });
+        const workSection = document.getElementById("work");
+        if (row && workSection && window.matchMedia("(min-width: 900px)").matches) {
+          ScrollTrigger.normalizeScroll?.(true);
+          const getDist = () => Math.max(0, row.scrollWidth - row.parentElement!.clientWidth + 56);
+          gsap.to(row, {
+            x: () => -getDist(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: workSection,
+              start: "top top",
+              end: () => "+=" + getDist(),
+              scrub: 1.5,
+              pin: true,
+              pinSpacing: true,
+              anticipatePin: 0,
+              invalidateOnRefresh: true,
+            },
+          });
         }
         initMachine(gsap);
-        cleanup = () => ScrollTrigger.getAll().forEach((t: { kill: () => void }) => t.kill());
+        cleanup = () => {
+          window.removeEventListener("scroll", onScroll);
+          ScrollTrigger.getAll().forEach((t: { kill: () => void }) => t.kill());
+        };
       } catch { /* CDN blocked — page still renders */ }
     })();
     return () => cleanup();
@@ -116,13 +148,13 @@ export function HomeV3() {
             <span className="ln"><span>Precision plastic,</span></span>
             <span className="ln"><span>moulded <em className="serif">at scale.</em></span></span>
           </h1>
-          <p className="sub" data-fade>Contract injection moulding on Japanese Niigata &amp; Nissei presses — 80 to 385 tonnes — with four decades of experience behind every part.</p>
+          <p className="sub" data-fade>Contract injection moulding on Japanese presses across a wide range of clamping force — four decades of experience behind every part.</p>
           <div className="cta" data-fade>
             <a className="btn lg" href="#contact">Start a project →</a>
             <a className="btn lg ghost light" href="#work">See our work</a>
           </div>
         </div>
-        <div className="herometa"><div className="wrap"><span className="cue">Scroll ↓</span><span>40+ years · 4 presses · 80–385T · FBR registered</span></div></div>
+        <div className="herometa"><div className="wrap"><span className="cue">Scroll ↓</span><span>40+ years · Japanese presses · FBR registered</span></div></div>
       </section>
 
       <div className="marq"><div className="track">{[...MARQUEE, ...MARQUEE].map((w, i) => <span key={i}><b>{w}</b><i className="dot" /></span>)}</div></div>
@@ -146,9 +178,9 @@ export function HomeV3() {
         <h2 className="lead disp reveal">Built for <em className="serif">volume,</em> tuned for precision.</h2>
         <div className="bento">
           <div className="cell reveal"><div className="big" data-count="40" data-suf="+">0</div><small>Years moulding plastics</small></div>
-          <div className="cell reveal"><div className="big" data-count="4">0</div><small>Japanese presses</small></div>
-          <div className="cell span2 imgcell reveal"><img src="/products/aircooler-1.webp" alt="" /><div className="ov"><h4 className="disp">80 – 385 tonnes</h4><small>Clamping range — small parts to large housings</small></div></div>
-          <div className="cell span2 imgcell reveal"><img src="/products/enclosure-2.webp" alt="" /><div className="ov"><h4 className="disp">In-house tooling</h4><small>Mould design, build &amp; repair under one roof</small></div></div>
+          <div className="cell reveal"><div className="big">24h</div><small>Typical quote turnaround</small></div>
+          <a className="cell span2 imgcell reveal cellLink" href="/capabilities"><img src="https://images.pexels.com/photos/14804699/pexels-photo-14804699.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Injection moulding press in operation" /><div className="ov"><h4 className="disp">Wide-range presses</h4><small>From small precision parts to large housings — what we can make →</small></div></a>
+          <a className="cell span2 imgcell reveal cellLink" href="/tooling"><img src="https://images.pexels.com/photos/8865187/pexels-photo-8865187.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="CNC mould tooling" /><div className="ov"><h4 className="disp">In-house tooling</h4><small>Mould design, build &amp; repair — CNC equipped, see the workshop →</small></div></a>
           <div className="cell reveal"><div className="big" data-count="8" data-suf="+">0</div><small>Materials mastered</small></div>
           <div className="cell reveal"><div className="big serif fbr">FBR</div><small>Registered business</small></div>
         </div>
@@ -162,15 +194,18 @@ export function HomeV3() {
         </div>
         <div className="row" id="prow">
           {PRODUCTS.map((p) => (
-            <div className="card" key={p.title}>
+            <a className="card" key={p.slug} href={`/products/${p.slug}`} aria-label={p.title}>
               <span className="tag">{p.tag}</span>
               {p.imgs.map((im, j) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img key={im} className={`cimg${j === 0 ? " on" : ""}`} src={`/products/${im}.webp`} alt={p.title} loading="lazy" />
               ))}
-              <div className="lab"><h4>{p.title}</h4><p>{p.desc}</p></div>
-            </div>
+              <div className="lab"><h4>{p.title}</h4><p>{p.desc}</p><span className="cardlink">View details →</span></div>
+            </a>
           ))}
+        </div>
+        <div className="wrap" style={{ marginTop: 24 }}>
+          <a className="btn lg" href="/products">View all products →</a>
         </div>
       </section>
 
@@ -190,7 +225,7 @@ export function HomeV3() {
             <p className="msub">Send a drawing, a sample, or just a requirement. We usually reply within a business day.</p>
             <div className="cinfo">
               <div><span>Call</span><a href="tel:+923009642762">+92 300 9642762</a></div>
-              <div><span>Email</span><a href="mailto:info@rehmanindustry.com">info@rehmanindustry.com</a></div>
+              <div><span>Email</span><a href="mailto:info@rehmanindustry.com">info@rehmanindustry.com</a><a href="mailto:rehmanindustry01@gmail.com" style={{ display: "block", marginTop: 2, fontSize: 13, color: "#ff9d3c" }}>rehmanindustry01@gmail.com</a></div>
               <div><span>WhatsApp</span><a href="https://wa.me/923009642762" target="_blank" rel="noopener noreferrer">Chat now →</a></div>
               <div><span>Visit</span>Link Sui Gas Road, Gujranwala, Pakistan</div>
             </div>
@@ -426,19 +461,30 @@ const CSS = `
 .v3 .cell .big.fbr{font-style:italic}.v3 .cell small{color:var(--muted);font-size:14px}
 .v3 .cell.span2{grid-column:span 2}
 .v3 .imgcell{padding:0;justify-content:flex-end}
+.v3 .cellLink{display:flex;text-decoration:none;color:inherit}
+.v3 .cellLink:hover img{transform:scale(1.04)}
+.v3 .imgcell img{transition:transform .7s ease}
 .v3 .imgcell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .v3 .imgcell .ov{position:relative;padding:26px;background:linear-gradient(to top,rgba(8,10,14,.92),rgba(8,10,14,.15) 70%);width:100%}
 .v3 .imgcell h4{font-size:24px;color:#fff}.v3 .imgcell small{color:#cdd5de}
 @media(max-width:860px){.v3 .bento{grid-template-columns:repeat(2,1fr)}}
-/* work */
+/* work — desktop: GSAP pin-scrub. Mobile: native swipe-scroll. */
 .v3 .ph{overflow:hidden;background:var(--bg)}
 .v3 .row{display:flex;gap:24px;padding:40px 28px;will-change:transform}
-.v3 .card{position:relative;flex:0 0 auto;width:clamp(260px,32vw,400px);height:clamp(340px,44vw,520px);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#0a0b0d}
+.v3 .card{position:relative;flex:0 0 auto;width:clamp(260px,32vw,400px);height:clamp(340px,44vw,520px);border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#0a0b0d;text-decoration:none;color:inherit;display:block;transition:transform .35s ease,box-shadow .35s ease}
+.v3 .card:hover{transform:translateY(-4px);box-shadow:0 24px 60px -20px rgba(255,122,24,.35)}
 .v3 .card .cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
 .v3 .card .cimg.on{opacity:1}
-.v3 .card .lab{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(to top,rgba(7,9,12,.94),rgba(7,9,12,.1) 58%);z-index:2}
+.v3 .card .lab{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(to top,rgba(7,9,12,.94),rgba(7,9,12,.15) 60%);z-index:2}
 .v3 .card .lab h4{font-size:23px;font-weight:600;color:#fff}.v3 .card .lab p{color:#aeb6c0;font-size:14px;margin-top:6px}
-.v3 .card .tag{position:absolute;top:16px;left:16px;z-index:3;background:rgba(46,125,255,.18);border:1px solid rgba(46,125,255,.45);color:#cde0ff;font-size:12px;padding:5px 12px;border-radius:100px}
+.v3 .card .cardlink{display:inline-block;margin-top:12px;color:#ff9d3c;font-size:13px;font-weight:600;letter-spacing:.02em}
+.v3 .card .tag{position:absolute;top:16px;left:16px;z-index:3;background:rgba(255,122,24,.18);border:1px solid rgba(255,122,24,.5);color:#ffd9b3;font-size:12px;padding:5px 12px;border-radius:100px}
+/* Mobile: swipe-scroll horizontally with snap, kill GSAP pin */
+@media(max-width:760px){
+  .v3 .ph .row{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:24px 20px}
+  .v3 .ph .row::-webkit-scrollbar{display:none}
+  .v3 .ph .card{scroll-snap-align:center;width:80vw;height:70vw;min-height:380px}
+}
 /* steps */
 .v3 .steps{margin-top:46px;border-top:1px solid var(--line)}
 .v3 .step{display:grid;grid-template-columns:80px 1fr;gap:28px;padding:34px 0;border-bottom:1px solid var(--line);transition:.3s}

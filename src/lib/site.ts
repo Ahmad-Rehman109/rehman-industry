@@ -23,7 +23,8 @@ export const site = {
   phone: "+92 300 9642762", // display format
   phoneHref: "+923009642762", // tel: format
   whatsapp: "923009642762", // wa.me format: country code + number, no + or spaces
-  email: "info@rehmanindustry.com", // TODO: set up this mailbox (see email setup notes)
+  email: "info@rehmanindustry.com", // primary
+  emailAlt: "rehmanindustry01@gmail.com", // secondary
 
   // --- Location ---
   address: {
@@ -52,9 +53,10 @@ export const site = {
     },
   ],
 
-  // --- Social (TODO: add real profile URLs; leave blank to hide) ---
+  // --- Social ---
   social: {
-    facebook: "",
+    facebook: "https://www.facebook.com/Rehmanindustry01/",
+    tiktok: "https://www.tiktok.com/@rehmanindustry",
     instagram: "",
     linkedin: "",
     youtube: "",

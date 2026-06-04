@@ -29,9 +29,9 @@ export default function FaqPage() {
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-24">
         <div className="divide-y divide-neutral-200 overflow-hidden rounded-3xl border border-neutral-200">
           {faqs.map((f) => (
-            <details key={f.q} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold transition-colors hover:bg-neutral-50">
-                {f.q}
+            <details key={f.q} className="group faq-item">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold transition-colors">
+                <span className="faq-q">{f.q}</span>
                 <ChevronDown className="h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-200 group-open:rotate-180" />
               </summary>
               <div className="px-5 pb-5 text-neutral-600">

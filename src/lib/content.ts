@@ -174,10 +174,10 @@ export type Machine = { tonnage: number; suited: string };
 
 /** Our injection moulding presses, by clamping force. */
 export const machines: Machine[] = [
-  { tonnage: 80, suited: "Small, intricate precision components" },
-  { tonnage: 160, suited: "Everyday parts and medium components" },
-  { tonnage: 360, suited: "Larger parts and multi-cavity tooling" },
-  { tonnage: 385, suited: "High-clamp work, housings and bigger mouldings" },
+  { tonnage: 10, suited: "Micro & small precision components" },
+  { tonnage: 100, suited: "Everyday parts and medium components" },
+  { tonnage: 250, suited: "Larger parts and multi-cavity tooling" },
+  { tonnage: 400, suited: "High-clamp work, housings and bigger mouldings" },
 ];
 
 export type Step = { title: string; desc: string; Icon: LucideIcon };
@@ -214,8 +214,8 @@ export type Stat = { value: string; label: string };
 
 export const stats: Stat[] = [
   { value: "40+", label: "Years of experience" },
-  { value: "4", label: "Japanese presses" },
-  { value: "80–385T", label: "Clamping force range" },
+  { value: "Wide", label: "Clamping force range" },
+  { value: "8+", label: "Materials mastered" },
   { value: "24h", label: "Typical quote turnaround" },
 ];
 
@@ -278,5 +278,45 @@ export const faqs: Faq[] = [
   {
     q: "How do I get a quote?",
     a: "Send us your part details by WhatsApp, phone or the contact form with as much information as you have — drawing, sample, material, quantity. We typically respond within one business day.",
+  },
+  {
+    q: "Do you supply across all of Pakistan?",
+    a: "Yes. We deliver to customers across Pakistan — Lahore, Karachi, Islamabad, Faisalabad, Sialkot, Peshawar and beyond — and also handle export orders.",
+  },
+  {
+    q: "What is your typical lead time?",
+    a: "For new parts: tooling typically takes 3–6 weeks depending on complexity, then sampling adds a few days. Once tooling is approved, repeat production runs are fast — usually days, not weeks. We quote a realistic timeline with every order.",
+  },
+  {
+    q: "Can you mass-produce a part I designed?",
+    a: "Yes. Bring your drawing, 3D file or physical sample. We'll review it for manufacturability (DFM), advise on the best material, build the mould, and run sampling before any volume production starts.",
+  },
+  {
+    q: "What payment terms do you offer?",
+    a: "Standard terms are an advance on tooling (so we can start the mould) and balanced payments on production lots. We're flexible for long-term contract clients. Discuss with us directly.",
+  },
+  {
+    q: "Do you sign NDAs / keep my designs confidential?",
+    a: "Absolutely. Most of our work is contract moulding for other brands — confidentiality is the default. We can sign your NDA before sharing any drawings or samples.",
+  },
+  {
+    q: "Can you handle low-volume / small runs?",
+    a: "Yes. We accept small trial runs (a few hundred parts) as well as ongoing high-volume contracts. Smaller runs do have a higher unit cost since tooling amortises over fewer parts — we'll be upfront about that.",
+  },
+  {
+    q: "Do you do secondary operations like printing or assembly?",
+    a: "Yes — pad printing, hot stamping, simple assembly, inserts, packing and labelling are all available as add-ons.",
+  },
+  {
+    q: "Where exactly are you located?",
+    a: "Link Sui Gas Road, Gujranwala, Punjab, Pakistan. Visitors are welcome by appointment — call or WhatsApp first so the right person can meet you.",
+  },
+  {
+    q: "Can I visit the factory before placing an order?",
+    a: "Yes, we encourage it for serious enquiries. Call or WhatsApp to schedule. We're open 24/7 except Fridays.",
+  },
+  {
+    q: "Are your products food-safe / medical-grade?",
+    a: "We mould in food-safe PP, PE and similar grades when the project requires it. For medical-grade work we follow the relevant material certification — discuss your spec with us up-front.",
   },
 ];

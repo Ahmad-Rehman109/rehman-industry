@@ -6,11 +6,13 @@ import { usePathname } from "next/navigation";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { site } from "@/lib/site";
 
+// Natural buyer flow: WHAT we make → WHAT we offer → HOW we make it →
+// WHO we serve → WHO we are → support → action.
 const nav = [
+  { label: "Products", href: "/products" },
   { label: "Services", href: "/services" },
-  { label: "Capabilities", href: "/capabilities" },
+  { label: "Tooling", href: "/tooling" },
   { label: "Industries", href: "/industries" },
-  { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },

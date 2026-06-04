@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Quote } from "lucide-react";
 import { getProject, projects } from "@/lib/projects";
 import { IMG, px } from "@/lib/img";
+import { projectGallery, projectImage } from "@/lib/portfolio-image";
 import { PageHero } from "@/components/page-hero-v2";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
@@ -48,7 +49,7 @@ export default async function ProjectPage({
         eyebrow={project.industry}
         title={project.title}
         description={project.summary}
-        image={px(IMG[project.image], 1800)}
+        image={projectImage(project.slug)}
         imageAlt={project.title}
         crumbs={[
           { name: "Home", href: "/" },
@@ -145,14 +146,14 @@ export default async function ProjectPage({
       <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8">
         <h2 className="text-2xl font-semibold tracking-tight">Gallery</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {project.gallery.map((g, i) => (
+          {projectGallery(project.slug).map((src, i) => (
             <div
-              key={`${g}-${i}`}
+              key={`${src}-${i}`}
               className="aspect-[4/3] overflow-hidden rounded-2xl border border-neutral-200"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={px(IMG[g], 800)}
+                src={src}
                 alt={`${project.title} — image ${i + 1}`}
                 className="h-full w-full object-cover"
                 loading="lazy"

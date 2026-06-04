@@ -1,20 +1,29 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
-import { machines, materials } from "@/lib/content";
-import { IMG, px } from "@/lib/img";
+import { materials } from "@/lib/content";
 import { PageHero } from "@/components/page-hero-v2";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Capabilities",
+  title: "Plastic Injection Moulding Capabilities — Gujranwala (GRW), Pakistan",
   description:
-    "Plastic injection moulding capabilities at Rehman Industry, Gujranwala — four Japanese presses (80–385t), a wide range of materials, in-house tooling, secondary operations and quality control.",
+    "Plastic injection moulding capabilities in Gujranwala (GRW), Pakistan — wide working range, in-house tooling, full material range, secondary operations and quality control. Trusted Pakistani plastic moulding contract manufacturer since 1985.",
+  keywords: [
+    "plastic injection moulding Pakistan",
+    "injection moulding Gujranwala",
+    "GRW plastic moulding",
+    "plastic moulding company Pakistan",
+    "Pakistan plastic factory",
+    "Gujranwala plastic manufacturer",
+    "plastic parts manufacturer Pakistan",
+    "contract injection moulding Pakistan",
+    "Rehman Industry Gujranwala",
+    "custom plastic moulding Pakistan",
+  ],
   alternates: { canonical: "/capabilities" },
-  openGraph: { title: "Capabilities | Rehman Industry", url: "/capabilities" },
+  openGraph: { title: "Capabilities | Rehman Industry — Plastic Moulding GRW Pakistan", url: "/capabilities" },
 };
-
-const numColor = ["text-orange-500", "text-amber-600", "text-emerald-600", "text-rose-600"];
 
 const secondary = [
   "Assembly of multi-part components",
@@ -32,46 +41,66 @@ const quality = [
   "Material traceability on request",
 ];
 
+const pillars = [
+  { t: "Established since 1985", d: "Four decades of plastic injection moulding experience serving customers across Pakistan and for export." },
+  { t: "Made in Gujranwala", d: "Our plant is based in Gujranwala (GRW) — Pakistan's industrial heartland — with easy supply across the country." },
+  { t: "Wide working range", d: "From small precision components to larger housings, we have the capacity to mould a broad variety of plastic parts." },
+  { t: "Full material range", d: "Commodity and engineering plastics — PP, PE, ABS, PS, PVC, Nylon (PA), PC, POM and more. We'll recommend the right one." },
+  { t: "In-house tooling", d: "Mould design, build and repair handled in-house. No waiting on outside tool-makers, faster turnaround on changes." },
+  { t: "Reliable supply", d: "Realistic timelines, on-time dispatch across Pakistan and export — the kind of consistency contract buyers actually need." },
+];
+
 export default function CapabilitiesPage() {
   return (
     <>
       <PageHero
         eyebrow="Capabilities"
-        title="What we can make — and how we make it well"
-        description="From precise technical parts to larger housings, backed by Japanese presses, in-house tooling and quality checks on every job."
-        image={px(IMG.cnc, 1800)}
-        imageAlt="Precision machining and tooling"
+        title="Plastic injection moulding done properly"
+        description="A trusted Pakistani plastic injection moulding contract manufacturer in Gujranwala (GRW) — established, experienced, and dependable for everything from automotive parts to housewares, packaging and industrial components."
+        image="/products/hero-1.webp"
+        imageAlt="Plastic injection moulding capabilities at Rehman Industry, Gujranwala, Pakistan"
         crumbs={[{ name: "Home", href: "/" }, { name: "Capabilities" }]}
       />
 
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-20">
-        <p className="text-lg leading-relaxed text-neutral-700">
-          Rehman Industry runs <strong>four Japanese Niigata &amp; Nissei
-          injection moulding presses</strong> from <strong>80 to 385 tonnes</strong>,
-          letting us mould everything from small precision components to larger
-          housings. With in-house tooling, a wide material range and checks on
-          every batch, we cover the full job — not just the moulding.
+        <h2 className="text-3xl font-semibold tracking-tight">
+          A trusted name in <span className="text-orange-500">plastic injection moulding</span> in Pakistan
+        </h2>
+        <p className="mt-6 text-lg leading-relaxed text-neutral-700">
+          Rehman Industry is one of <strong>Gujranwala&apos;s most established
+          plastic injection moulding</strong> contract manufacturers. For over four
+          decades, businesses across <strong>Pakistan</strong> — from{" "}
+          <strong>automotive and motorcycle</strong> brands to{" "}
+          <strong>appliance, household, packaging</strong> and <strong>industrial</strong>{" "}
+          customers — have trusted us to mould the plastic components their
+          products are built from.
+        </p>
+        <p className="mt-5 text-lg leading-relaxed text-neutral-700">
+          Whether you need a small precision plastic part, a larger moulded housing
+          or a high-volume contract production run, our <strong>Gujranwala
+          (GRW)</strong> plant is set up to deliver it consistently, batch after
+          batch.
+        </p>
+        <p className="mt-5 text-lg leading-relaxed text-neutral-700">
+          <strong>Established. Experienced. Reliable.</strong> That&apos;s what a
+          plastic moulding partner in Pakistan should be — and what Rehman Industry
+          has been since <strong>1985</strong>.
         </p>
       </section>
 
       <section className="border-t border-neutral-200 bg-neutral-50">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
           <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Our presses
+            Why Pakistani brands choose Rehman Industry
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-neutral-600">
-            Four clamping forces — we match the press to your part.
+            Six things that have kept customers coming back for four decades.
           </p>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {machines.map((m, i) => (
-              <div key={m.tonnage} className="rounded-3xl border border-neutral-200 bg-white p-8">
-                <div className={`text-6xl font-semibold tracking-tight tabular-nums ${numColor[i]}`}>
-                  {m.tonnage}
-                  <span className="ml-1 text-xl font-normal text-neutral-400">t</span>
-                </div>
-                <p className="mt-5 text-sm leading-relaxed text-neutral-600">
-                  {m.suited}
-                </p>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {pillars.map((p) => (
+              <div key={p.t} className="rounded-3xl border border-neutral-200 bg-white p-7">
+                <h3 className="text-lg font-semibold text-neutral-900">{p.t}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">{p.d}</p>
               </div>
             ))}
           </div>
@@ -81,8 +110,8 @@ export default function CapabilitiesPage() {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
         <h2 className="text-2xl font-semibold tracking-tight">Materials we mould</h2>
         <p className="mt-3 max-w-xl text-neutral-600">
-          A wide range of commodity and engineering plastics — not sure which
-          suits your part? We&apos;ll recommend one.
+          A wide range of commodity and engineering plastics — not sure which suits
+          your part? We&apos;ll recommend one.
         </p>
         <div className="mt-8 flex flex-wrap gap-2.5">
           {materials.map((m) => (
@@ -101,12 +130,10 @@ export default function CapabilitiesPage() {
       <section className="border-t border-neutral-200 bg-neutral-50">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-24">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Secondary operations
-            </h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Secondary operations</h2>
             <p className="mt-3 text-neutral-600">
-              Moulding is often only part of the job. We finish parts so they
-              arrive ready to use.
+              Moulding is often only part of the job. We finish parts so they arrive
+              ready to use.
             </p>
             <ul className="mt-6 space-y-3">
               {secondary.map((s) => (
@@ -118,12 +145,9 @@ export default function CapabilitiesPage() {
             </ul>
           </div>
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Quality control
-            </h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Quality control</h2>
             <p className="mt-3 text-neutral-600">
-              Consistency is the whole point of moulding. Here&apos;s how we keep
-              it.
+              Consistency is the whole point of moulding. Here&apos;s how we keep it.
             </p>
             <ul className="mt-6 space-y-3">
               {quality.map((q) => (
@@ -135,6 +159,26 @@ export default function CapabilitiesPage() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-5 py-20 sm:px-8 lg:py-24">
+        <h2 className="text-2xl font-semibold tracking-tight">
+          Looking for a plastic injection moulding company in Pakistan?
+        </h2>
+        <p className="mt-5 text-lg leading-relaxed text-neutral-700">
+          If you&apos;re searching for a <strong>reliable plastic moulding
+          manufacturer in Gujranwala</strong> or anywhere in <strong>Pakistan</strong>,
+          Rehman Industry is one of the country&apos;s most established names in
+          the field. We handle <strong>contract injection moulding</strong>,{" "}
+          <strong>mould making</strong> and <strong>full plastic part manufacturing</strong>{" "}
+          — from your drawing or sample, all the way through to finished, packed
+          and dispatched parts.
+        </p>
+        <p className="mt-5 text-lg leading-relaxed text-neutral-700">
+          Based in <strong>Gujranwala (GRW)</strong>, we supply customers across
+          Lahore, Karachi, Islamabad, Faisalabad, Sialkot, Peshawar and beyond, as
+          well as for export.
+        </p>
       </section>
 
       <CtaBand title="Tell us about your part" />

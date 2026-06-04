@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hero picture bank — pick 4–6 for the homepage hero</title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+ *{margin:0;padding:0;box-sizing:border-box}
+ body{background:#0a0b0d;color:#cdd5de;font-family:Inter,sans-serif;padding:40px}
+ h1{font-family:"Space Grotesk";font-size:26px;font-weight:700;color:#fff}
+ p.note{color:#9aa3ad;margin-top:8px;max-width:80ch;line-height:1.55}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;margin-top:30px}
+ figure{background:#11151c;border:1px solid #1f2630;border-radius:14px;overflow:hidden}
+ figure img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#1a1d22}
+ figcaption{padding:12px 14px}
+ .pick{display:inline-block;background:#ff7a18;color:#fff;font-weight:700;border-radius:7px;padding:2px 9px;font-size:13px;margin-right:8px}
+ .desc{color:#cdd5de;font-size:13px}
+ .tag{color:#ff9d3c;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:4px;display:block}
+ .legend{display:inline-block;background:rgba(255,122,24,.12);color:#ff9d3c;border:1px solid rgba(255,122,24,.35);padding:4px 10px;border-radius:100px;font-size:11px;margin-top:10px;font-weight:600}
+</style></head><body>
+<h1>🖼 Hero picture bank — pick 4–6 codes for the homepage hero</h1>
+<p class="note">
+Honest note: Pexels has very few real shots of injection moulding presses specifically. These are the best-looking industrial/factory images that <em>read</em> as moulding to non-experts. Reply with the codes you like (e.g. <b>"A, B, D, F"</b>) and I'll wire them to the hero crossfade. If none feel right, the only good alternatives are your own factory phone photos, or we keep the current set.
+</p>
+<span class="legend">Aspect 16:9 — matches the hero on the homepage</span>
+<div class="grid" id="g"></div>
+<script>
+const P=(id)=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1400`;
+const set=[
+ ["A",14804699,"Production hall","Currently in hero — moulding floor."],
+ ["B",34221993,"Automated line","Currently in hero — production motion."],
+ ["C",17937669,"Yellow components on line","Currently in hero — close-up parts."],
+ ["D",18631424,"Bottling conveyor","Currently in hero — high-volume feel."],
+ ["E",12951627,"Factory hall, orange pillars","Currently in hero — wide industrial mood."],
+ ["F",32972128,"Operator at the machine · Karachi 🇵🇰","Pakistani factory worker — feels local + real."],
+ ["G",32972129,"Operator at control panel · Karachi 🇵🇰","Hands-on shot, Pakistani factory."],
+ ["H",36423819,"Industrial warehouse","Big shrink-film / processing equipment."],
+ ["I",18631423,"Modern factory line","Clean conveyor close-up."],
+ ["J",31985602,"Bottling-line machinery","Hoses, valves, industrial detail."],
+ ["K",11765538,"Worker focused at machine","Documentary feel, operator at press."],
+ ["L",11765539,"Workers operating machinery","Two-person operation — production rhythm."],
+];
+document.getElementById('g').innerHTML=set.map(s=>`
+ <figure>
+   <img loading="lazy" src="${P(s[1])}" alt="${s[2]}"/>
+   <figcaption><span class="tag">Hero option</span><span class="pick">${s[0]}</span><span class="desc">${s[2]} — ${s[3]}</span></figcaption>
+ </figure>`).join('');
+</script>
+</body></html>

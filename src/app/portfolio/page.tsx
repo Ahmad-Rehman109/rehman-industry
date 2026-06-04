@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { IMG, px } from "@/lib/img";
+import { projectImage } from "@/lib/portfolio-image";
 import { PageHero } from "@/components/page-hero-v2";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
@@ -54,7 +55,7 @@ export default function PortfolioPage() {
               <div className="aspect-[4/3] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={px(IMG[p.image], 800)}
+                  src={projectImage(p.slug)}
                   alt={p.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

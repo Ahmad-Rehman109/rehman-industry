@@ -51,7 +51,7 @@ export default function AboutPage() {
               </p>
               <p>
                 We built the business around consistency: well-made tooling on
-                Japanese Niigata &amp; Nissei presses, careful process control,
+                Japanese presses, careful process control,
                 and checks on every lot before it leaves the floor. The result is
                 parts that come out the same, batch after batch.
               </p>
