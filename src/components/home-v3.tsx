@@ -206,13 +206,13 @@ function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget; // capture BEFORE await — React nulls the event target after
     setStatus("sending");
-    const fd = new FormData(e.currentTarget);
-    const body = JSON.stringify(Object.fromEntries(fd.entries()));
+    const body = JSON.stringify(Object.fromEntries(new FormData(form).entries()));
     try {
       const res = await fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body });
-      setStatus(res.ok ? "ok" : "err");
-      if (res.ok) e.currentTarget.reset();
+      if (res.ok) { form.reset(); setStatus("ok"); }
+      else setStatus("err");
     } catch { setStatus("err"); }
   }
   if (status === "ok") {

@@ -42,20 +42,13 @@ export const site = {
   registration: "FBR registered", // Federal Board of Revenue (Pakistan)
 
   // Human-readable hours (shown on the site)
-  hours: [{ days: "Monday – Saturday", time: "9:00 AM – 6:00 PM" }],
-  // Machine-readable hours (JSON-LD)
+  hours: [{ days: "Open 24/7", time: "Closed Friday" }],
+  // Machine-readable hours (JSON-LD) — open every day except Friday, 24h
   openingHours: [
     {
-      days: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
-      opens: "09:00",
-      closes: "18:00",
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday"],
+      opens: "00:00",
+      closes: "23:59",
     },
   ],
 
