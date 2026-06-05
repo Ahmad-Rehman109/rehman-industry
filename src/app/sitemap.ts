@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { services } from "@/lib/content";
 import { products } from "@/lib/products";
+import { articles } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/products"), lastModified: now, changeFrequency: "weekly", priority: 0.95 },
     { url: absoluteUrl("/machines"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/tooling"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl("/articles"), lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: absoluteUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/faq"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.8 },
@@ -34,5 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...servicePages, ...productPages];
+  const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: absoluteUrl(`/articles/${a.slug}`),
+    lastModified: new Date(a.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...servicePages, ...productPages, ...articlePages];
 }

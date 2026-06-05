@@ -221,6 +221,136 @@ export const products: Product[] = [
     metaDescription:
       "ABS plastic instrument boxes and enclosures moulded in Gujranwala, Pakistan — clean mating faces, recessed screw bosses, durable construction.",
   },
+  {
+    slug: "plastic-furniture-components",
+    tag: "Furniture",
+    title: "Plastic Furniture Components",
+    desc: "Table legs, chair bases, fittings",
+    imgs: ["mudguard-1", "mudguard-2"],
+    material: "PP / Nylon (PA)",
+    industry: "Furniture / Hardware",
+    intro:
+      "Load-bearing plastic furniture components — table legs, chair feet, connector blocks and frame fittings. Moulded in rigid materials that hold their shape under everyday loads, with clean visible faces and accurate threaded inserts where needed. Black, white and wood-tone finishes available.",
+    highlights: [
+      "Load-bearing rigid materials — PP, Nylon (PA)",
+      "Accurate threaded inserts for assembly",
+      "Smooth visible faces, retail-ready finish",
+      "Black, white and wood-tone colour options",
+    ],
+    keywords: [
+      "plastic table leg manufacturer Pakistan",
+      "furniture plastic parts Gujranwala",
+      "chair fitting moulded plastic",
+      "plastic furniture connector Pakistan",
+    ],
+    metaTitle: "Plastic Furniture Components — Table Legs & Fittings | Rehman Industry",
+    metaDescription:
+      "Moulded plastic furniture components in Gujranwala, Pakistan — table legs, chair feet, connector blocks. Rigid materials, clean finish, ready for assembly.",
+  },
+  {
+    slug: "electrical-switch-housings",
+    tag: "Electrical",
+    title: "Electrical Switch Housings",
+    desc: "Flame-class ABS / PC",
+    imgs: ["enclosure-1", "enclosure-2"],
+    material: "ABS / Polycarbonate (PC)",
+    industry: "Electrical",
+    intro:
+      "Insulating plastic switch housings, junction boxes and accessory shells. Moulded with flame-class ABS or polycarbonate, accurate locating features for clean board-fit, and a clean cosmetic finish on visible surfaces. Engineered for safe, repeatable assembly on Pakistani electrical-product lines.",
+    highlights: [
+      "Flame-class material options (ABS / PC)",
+      "Accurate locating features for fast assembly",
+      "Clean cosmetic finish on visible faces",
+      "Custom colour matching available",
+    ],
+    keywords: [
+      "switch housing manufacturer Pakistan",
+      "electrical plastic enclosure Gujranwala",
+      "moulded switchgear shell Pakistan",
+      "junction box plastic supplier",
+    ],
+    metaTitle: "Electrical Switch Housings & Plastic Shells | Rehman Industry",
+    metaDescription:
+      "Moulded plastic electrical switch housings, junction boxes and accessory shells from Gujranwala, Pakistan — flame-class ABS / PC, accurate fit, clean finish.",
+  },
+  {
+    slug: "household-containers",
+    tag: "Household",
+    title: "Household Containers & Boxes",
+    desc: "Storage, organisers, kitchenware",
+    imgs: ["lids-1", "lids-2"],
+    material: "PP / HDPE",
+    industry: "Household",
+    intro:
+      "Plastic storage containers, kitchen boxes and organisers for everyday use. Moulded in food-safe PP and HDPE, with secure-fit lids, stackable bases and a clean glossy finish. From small spice boxes to large multi-litre storage tubs — patterns, colours and custom shapes supported.",
+    highlights: [
+      "Food-safe PP / HDPE construction",
+      "Secure-fit lids, stackable bases",
+      "Clean glossy retail-ready finish",
+      "Custom colours, patterns and shapes",
+    ],
+    keywords: [
+      "plastic container manufacturer Pakistan",
+      "household plastic boxes Gujranwala",
+      "kitchen storage container moulded",
+      "plastic organiser supplier Pakistan",
+    ],
+    metaTitle: "Plastic Household Containers & Boxes | Rehman Industry",
+    metaDescription:
+      "Plastic storage containers, kitchen boxes and organisers moulded in Gujranwala, Pakistan — food-safe PP / HDPE, secure-fit lids, retail-ready finish.",
+  },
+  {
+    slug: "plastic-crates-trays",
+    tag: "Industrial",
+    title: "Plastic Crates & Trays",
+    desc: "Stackable, vented, heavy-duty",
+    imgs: ["poultrymat-1", "poultrymat-2"],
+    material: "HDPE / PP",
+    industry: "Industrial / Logistics",
+    intro:
+      "Heavy-duty stackable plastic crates and trays for industrial, agricultural and logistics use. Moulded in tough HDPE and PP with reinforced corners, vented walls for airflow, and nesting / stacking geometry that saves space empty and loaded. Sizes from small parts trays to large produce crates.",
+    highlights: [
+      "Reinforced corners, heavy-duty construction",
+      "Vented walls for airflow (produce, poultry)",
+      "Stackable loaded, nestable empty",
+      "Custom sizes and colours",
+    ],
+    keywords: [
+      "plastic crate manufacturer Pakistan",
+      "industrial plastic tray Gujranwala",
+      "stackable plastic crate supplier",
+      "produce crate plastic Pakistan",
+    ],
+    metaTitle: "Plastic Crates & Trays — Stackable, Heavy-Duty | Rehman Industry",
+    metaDescription:
+      "Moulded plastic crates and trays from Gujranwala, Pakistan — heavy-duty HDPE / PP, vented for airflow, stackable and nestable. Industrial, agricultural and logistics use.",
+  },
+  {
+    slug: "automotive-trim-clips",
+    tag: "Automotive",
+    title: "Automotive Trim & Clips",
+    desc: "Precision fasteners & body components",
+    imgs: ["taillamp-1", "mudguard-1"],
+    material: "Nylon (PA) / ABS",
+    industry: "Automotive",
+    intro:
+      "Precision plastic trim, clips and fastening components for cars and motorcycles. Snap-fit geometry held to tight tolerances, durable engineering plastic that survives repeated loading, and OEM colour-match for invisible fits on visible panels. Supplied to vehicle manufacturers and aftermarket auto-parts suppliers across Pakistan.",
+    highlights: [
+      "Tight tolerances for snap-fit assembly",
+      "Durable engineering plastic (Nylon / ABS)",
+      "OEM colour-match available",
+      "OEM and aftermarket runs supported",
+    ],
+    keywords: [
+      "automotive clip manufacturer Pakistan",
+      "car trim plastic Gujranwala",
+      "motorcycle plastic fastener supplier",
+      "OEM auto-parts plastic moulding Pakistan",
+    ],
+    metaTitle: "Automotive Trim, Clips & Plastic Body Parts | Rehman Industry",
+    metaDescription:
+      "Precision moulded automotive trim, clips and plastic body parts from Gujranwala, Pakistan — tight tolerances, durable engineering plastic, OEM and aftermarket.",
+  },
 ];
 
 export function getProduct(slug: string) {

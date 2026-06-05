@@ -62,6 +62,14 @@ export function localBusinessSchema() {
       "Mould making and tooling",
       "Plastic contract manufacturing",
     ],
+    // Aggregate rating from our verified Google Business Profile.
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.4",
+      reviewCount: "8",
+      bestRating: "5",
+      worstRating: "1",
+    },
     ...(sameAs.length ? { sameAs } : {}),
   };
 }
