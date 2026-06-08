@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import { materials } from "@/lib/content";
 import { PageHero } from "@/components/page-hero-v2";
+import { QuickAnswer } from "@/components/quick-answer";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
@@ -62,7 +63,18 @@ export default function CapabilitiesPage() {
         crumbs={[{ name: "Home", href: "/" }, { name: "Capabilities" }]}
       />
 
-      <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-20">
+      <section className="mx-auto max-w-3xl px-5 pt-10 sm:px-8">
+        <QuickAnswer question="Is Rehman Industry a reliable plastic injection moulding company in Pakistan?">
+          Yes. Rehman Industry has been a Pakistani plastic injection moulding
+          contract manufacturer since <strong>1985</strong> — four decades of
+          continuous operation in <strong>Gujranwala (GRW)</strong>. We mould
+          everything from small precision parts to large housings, with full
+          in-house tooling, food-safe and engineering materials, and supply
+          across Pakistan plus export. FBR-registered.
+        </QuickAnswer>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-5 py-12 sm:px-8 lg:py-16">
         <h2 className="text-3xl font-semibold tracking-tight">
           A trusted name in <span className="text-orange-500">plastic injection moulding</span> in Pakistan
         </h2>

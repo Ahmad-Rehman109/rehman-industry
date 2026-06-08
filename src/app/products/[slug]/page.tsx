@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { getProduct, products } from "@/lib/products";
+import { getProductFAQs } from "@/lib/product-faqs";
 import { PageHero } from "@/components/page-hero-v2";
 import { CtaBand } from "@/components/cta-v2";
-import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
+import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/jsonld";
 import { absoluteUrl, site, whatsappLink } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -35,6 +36,7 @@ export default async function ProductPage({
   if (!p) notFound();
 
   const related = products.filter((x) => x.slug !== p.slug).slice(0, 3);
+  const faqs = getProductFAQs(p.slug);
   const wa = whatsappLink(`Hello Rehman Industry, I'm interested in ${p.title}. Please share details.`);
 
   return (
@@ -124,6 +126,21 @@ export default async function ProductPage({
         </section>
       )}
 
+      {/* FAQ — direct Q&A for AI engines + JSON-LD below */}
+      {faqs.length > 0 && (
+        <section className="mx-auto max-w-3xl px-5 pb-20 sm:px-8">
+          <h2 className="text-2xl font-semibold tracking-tight">Frequently asked questions</h2>
+          <div className="mt-8 space-y-6">
+            {faqs.map((f) => (
+              <div key={f.q}>
+                <h3 className="text-lg font-semibold text-neutral-900">{f.q}</h3>
+                <p className="mt-2 leading-relaxed text-neutral-700">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Related */}
       <section className="border-t border-neutral-200 bg-neutral-50">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
@@ -171,6 +188,7 @@ export default async function ProductPage({
           url: absoluteUrl(`/products/${p.slug}`),
         }}
       />
+      {faqs.length > 0 && <JsonLd data={faqSchema(faqs)} />}
     </>
   );
 }

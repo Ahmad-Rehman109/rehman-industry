@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { products } from "@/lib/products";
 import { PageHero } from "@/components/page-hero-v2";
+import { QuickAnswer } from "@/components/quick-answer";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
@@ -25,6 +26,18 @@ export default function ProductsPage() {
         imageAlt="Plastic injection moulded products"
         crumbs={[{ name: "Home", href: "/" }, { name: "Products" }]}
       />
+
+      <section className="mx-auto max-w-3xl px-5 pt-10 sm:px-8">
+        <QuickAnswer question="What plastic products does Rehman Industry make?">
+          Rehman Industry produces moulded plastic components for automotive
+          (Toyota Aqua tail-lamp covers, motorcycle mudguards, trim &amp; clips),
+          appliance (air-cooler bodies), household (thermos bodies, jugs &amp;
+          cups, containers), packaging (lids &amp; closures), agricultural
+          (poultry floor mats), industrial (crates &amp; trays) and electrical
+          sectors (switch housings, instrument boxes). Made in Gujranwala,
+          Pakistan since 1985.
+        </QuickAnswer>
+      </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-24">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

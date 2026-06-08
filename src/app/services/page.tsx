@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { processSteps, services } from "@/lib/content";
 import { IMG, px } from "@/lib/img";
 import { PageHero } from "@/components/page-hero-v2";
+import { QuickAnswer } from "@/components/quick-answer";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
@@ -33,14 +34,23 @@ export default function ServicesPage() {
         crumbs={[{ name: "Home", href: "/" }, { name: "Services" }]}
       />
 
-      <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-20">
+      <section className="mx-auto max-w-3xl px-5 pt-10 sm:px-8">
+        <QuickAnswer question="What services does Rehman Industry offer?">
+          Rehman Industry offers three core plastic services in Gujranwala, Pakistan:
+          (1) <strong>plastic injection moulding</strong> — moulding custom plastic parts
+          from your drawing or sample; (2) <strong>mould making and tooling</strong> —
+          designing, building and repairing injection moulds in-house; and
+          (3) <strong>contract plastic manufacturing</strong> — full-service plastic
+          production for other brands. Established 1985. FBR-registered.
+        </QuickAnswer>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-5 py-12 sm:px-8 lg:py-16">
         <p className="text-lg leading-relaxed text-neutral-700">
-          Rehman Industry is a plastic injection moulding company in Gujranwala
-          offering three services: <strong>injection moulding</strong>,{" "}
-          <strong>mould making &amp; tooling</strong>, and{" "}
-          <strong>contract manufacturing</strong>. Bring a drawing, a sample or
-          just a requirement — we handle the rest, from tooling to
-          quality-checked production.
+          Bring a drawing, a sample or just a requirement — we handle the rest,
+          from tooling to quality-checked production. All three services run
+          under one roof in our Gujranwala plant, which keeps lead times short
+          and feedback loops tight.
         </p>
       </section>
 

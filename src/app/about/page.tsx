@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CalendarDays, Factory, MapPin, Users } from "lucide-react";
 import { stats, whyUs } from "@/lib/content";
 import { PageHero } from "@/components/page-hero-v2";
+import { QuickAnswer } from "@/components/quick-answer";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
@@ -41,7 +42,19 @@ export default function AboutPage() {
         crumbs={[{ name: "Home", href: "/" }, { name: "About" }]}
       />
 
-      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-24">
+      <section className="mx-auto max-w-3xl px-5 pt-10 sm:px-8">
+        <QuickAnswer question="Who is Rehman Industry?">
+          Rehman Industry is a <strong>family-built plastic injection moulding
+          contract manufacturer</strong> in Gujranwala, Pakistan, established
+          in <strong>1985</strong>. We mould plastic components for automotive,
+          appliance, household, packaging, agricultural and electrical
+          customers across Pakistan and for export — all under one roof, with
+          in-house mould-making and tooling. FBR-registered. NDAs signed by
+          default. Forty years and counting.
+        </QuickAnswer>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
         <div className="grid gap-12 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Who we are</h2>

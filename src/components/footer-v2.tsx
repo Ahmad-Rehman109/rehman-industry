@@ -125,6 +125,34 @@ export function SiteFooter() {
                 </svg>
               </a>
             )}
+            {site.social.instagram && (
+              <a
+                href={site.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:border-orange-500 hover:text-orange-500"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            )}
+            {site.social.linkedin && (
+              <a
+                href={site.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:border-orange-500 hover:text-orange-500"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9.5h4v11H3v-11zm6.5 0h3.8v1.7h.06c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.05v5.3H17.9v-4.7c0-1.12-.02-2.55-1.55-2.55-1.56 0-1.8 1.22-1.8 2.47v4.78H9.5v-11z"/>
+                </svg>
+              </a>
+            )}
           </div>
         </div>
       </div>

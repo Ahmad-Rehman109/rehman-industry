@@ -67,7 +67,20 @@ export default async function ArticlePage({
       />
 
       {/* Body */}
-      <article className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-20">
+      <article className="mx-auto max-w-3xl px-5 py-12 sm:px-8 lg:py-16">
+        <div className="mb-10 flex flex-wrap items-center gap-4 border-b border-neutral-200 pb-6 text-sm text-neutral-500">
+          <span>
+            <span className="font-medium text-neutral-700">By Rehman Industry</span>
+            <span className="mx-2 text-neutral-300">·</span>
+            <span>Gujranwala, Pakistan</span>
+          </span>
+          <span className="mx-1 text-neutral-300">·</span>
+          <time dateTime={a.updatedAt || a.publishedAt}>
+            Updated {new Date(a.updatedAt || a.publishedAt).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+          </time>
+          <span className="mx-1 text-neutral-300">·</span>
+          <span>{a.readingMinutes} min read</span>
+        </div>
         {a.body.map((section, i) => (
           <section key={section.h2} className={i === 0 ? "" : "mt-12"}>
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{section.h2}</h2>
@@ -140,7 +153,7 @@ export default async function ArticlePage({
           headline: a.title,
           description: a.metaDescription,
           datePublished: a.publishedAt,
-          dateModified: a.publishedAt,
+          dateModified: a.updatedAt || a.publishedAt,
           author: { "@type": "Organization", name: site.name },
           publisher: {
             "@type": "Organization",

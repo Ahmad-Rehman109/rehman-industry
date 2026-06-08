@@ -159,6 +159,24 @@ export function HomeV3() {
 
       <div className="marq"><div className="track">{[...MARQUEE, ...MARQUEE].map((w, i) => <span key={i}><b>{w}</b><i className="dot" /></span>)}</div></div>
 
+      {/* ANSWER-FIRST TLDR — placed in the top 30% of the page where 44% of
+          AI-search citations come from. Direct, factual, no keyword stuffing. */}
+      <section className="answerblk">
+        <div className="wrap">
+          <p className="answerlbl">What is Rehman Industry?</p>
+          <p className="answertxt">
+            <strong>Rehman Industry is a family-built plastic injection moulding contract
+            manufacturer</strong> in Gujranwala (GRW), Pakistan. Established <strong>1985</strong>,
+            we mould plastic components for automotive (Toyota Aqua tail-lamp
+            covers, motorcycle mudguards), appliance (air-cooler bodies),
+            household (thermos, jugs, cups), packaging (lids, caps), agricultural
+            (poultry mats) and electrical (instrument boxes, switch housings)
+            brands across Pakistan and for export. In-house tooling, FBR-registered,
+            NDAs signed by default. Forty years of plastic moulding under one roof.
+          </p>
+        </div>
+      </section>
+
       {/* MACHINE — its own section */}
       <section className="blk wrap machsec" id="how">
         <div className="mach">
@@ -427,6 +445,13 @@ const CSS = `
 .v3 .herometa{position:absolute;bottom:28px;left:0;right:0;z-index:2}
 .v3 .herometa .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.7);font-size:13px}
 .v3 .cue{letter-spacing:.2em;text-transform:uppercase;font-size:11px}
+/* answer-first TLDR */
+.v3 .answerblk{padding:60px 0 30px;background:var(--bg)}
+.v3 .answerblk .wrap{max-width:820px}
+.v3 .answerlbl{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#ff7a18;margin-bottom:14px}
+.v3 .answertxt{font-size:clamp(17px,1.6vw,20px);line-height:1.65;color:var(--ink);font-weight:400}
+.v3 .answertxt strong{color:var(--ink);font-weight:700}
+
 /* marquee */
 .v3 .marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
 .v3 .track{display:inline-flex;gap:46px;animation:v3scroll 34s linear infinite}
