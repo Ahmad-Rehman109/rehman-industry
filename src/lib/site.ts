@@ -57,8 +57,8 @@ export const site = {
   social: {
     facebook: "https://www.facebook.com/Rehmanindustry01/",
     tiktok: "https://www.tiktok.com/@rehmanindustry",
-    instagram: "",
-    linkedin: "",
+    instagram: "https://www.instagram.com/rehmanindustry01",
+    linkedin: "https://www.linkedin.com/in/rehman-industry-881155415/",
     youtube: "",
   },
 } as const;

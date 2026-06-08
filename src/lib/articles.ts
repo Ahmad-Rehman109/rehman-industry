@@ -9,6 +9,7 @@ export type Article = {
   title: string;
   excerpt: string;
   publishedAt: string; // ISO date
+  updatedAt?: string;  // when last reviewed/refreshed — freshness signal
   readingMinutes: number;
   keywords: string[];
   heroImg: string;
