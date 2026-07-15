@@ -84,6 +84,12 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${hanken.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+        <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      </head>
       <body className="font-sans antialiased">
         <SmoothScroll />
         <SiteChrome>{children}</SiteChrome>
