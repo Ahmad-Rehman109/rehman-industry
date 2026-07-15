@@ -19,7 +19,9 @@ export type Article = {
   body: { h2: string; paragraphs: string[] }[];
 };
 
-export const articles: Article[] = [
+import { articlesBatch2 } from "./articles-batch2";
+
+const batch1: Article[] = [
   {
     slug: "plastic-injection-moulding-cost-pakistan",
     title: "How Much Does Plastic Injection Moulding Cost in Pakistan?",
@@ -431,6 +433,8 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export const articles: Article[] = [...batch1, ...articlesBatch2];
 
 export function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);
