@@ -18,9 +18,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Cloudflare adapter
-        run: npm install --save-dev @opennextjs/cloudflare wrangler
-
       - name: Build for Cloudflare
         run: npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion
 
