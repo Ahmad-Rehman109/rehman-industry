@@ -20,6 +20,7 @@ export type Article = {
 };
 
 import { articlesBatch2 } from "./articles-batch2";
+import { articlesBatch3 } from "./articles-batch3";
 
 const batch1: Article[] = [
   {
@@ -434,7 +435,7 @@ const batch1: Article[] = [
   },
 ];
 
-export const articles: Article[] = [...batch1, ...articlesBatch2];
+export const articles: Article[] = [...batch1, ...articlesBatch2, ...articlesBatch3];
 
 export function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);
