@@ -15,7 +15,7 @@ const tiles = [
   { id: "34221993", title: "Steady output", desc: "Built for repeatable runs, batch after batch." },
   { id: "17937669", title: "Reliable production", desc: "Consistency is what contract customers come back for." },
   { id: "18631424", title: "Volume capability", desc: "From everyday housewares to industrial parts." },
-  { id: "31985602", title: "Established setup", desc: "Refined over four decades of plastic manufacturing." },
+  { id: "31985602", title: "Established setup", desc: "Refined over two decades of plastic manufacturing." },
   { id: "18631423", title: "Quality across the floor", desc: "Every lot is checked before it ships." },
   { id: "12951627", title: "Factory in Gujranwala", desc: "Centrally located for nationwide and export supply." },
   { id: "32972128", title: "Skilled team", desc: "Operators with years of moulding experience." },
@@ -39,7 +39,7 @@ export default function MachinesPage() {
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-20">
         <h2 className="text-3xl font-semibold tracking-tight">A trusted name in plastic moulding</h2>
         <p className="mt-5 text-lg leading-relaxed text-neutral-700">
-          For over <strong>four decades</strong>, Rehman Industry has been one of
+          For <strong>two decades</strong>, Rehman Industry has been one of
           Gujranwala&apos;s most established <strong>plastic injection moulding</strong>{" "}
           contract manufacturers. From <strong>automotive parts</strong> and{" "}
           <strong>household products</strong> to <strong>industrial components</strong>{" "}
@@ -55,7 +55,7 @@ export default function MachinesPage() {
         </p>
         <p className="mt-5 text-lg leading-relaxed text-neutral-700">
           Established. Experienced. Dependable. That is what an injection moulding
-          partner should be — and what Rehman Industry has been since <strong>1985</strong>.
+          partner should be — and what Rehman Industry has been since <strong>2006</strong>.
         </p>
       </section>
 

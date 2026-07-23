@@ -201,7 +201,7 @@ export const articlesBatch3: Article[] = [
         paragraphs: [
           "**3D printing services:** MakerLab (Lahore), multiple freelancers on OLX and Facebook Marketplace offering FDM/SLA printing. Search 'سری ڈی پرنٹنگ' on Facebook groups.",
           "**CNC machining:** most tool rooms in Gujranwala, Karachi and Lahore offer CNC machining of plastic prototypes. Ask any injection moulder — they usually have a CNC setup in-house.",
-          "**Injection moulding (soft + production tooling):** Gujranwala is the capital for this. Rehman Industry is one option — established since 1985, in-house tool room, free DFM review.",
+          "**Injection moulding (soft + production tooling):** Gujranwala is the capital for this. Rehman Industry is one option — established since 2006, in-house tool room, free DFM review.",
           "**Freelance CAD designers:** Fiverr, Upwork, or local engineering graduates. For simple parts, a freelancer can produce a mouldable 3D file from your sketch for PKR 5,000–20,000.",
         ],
       },

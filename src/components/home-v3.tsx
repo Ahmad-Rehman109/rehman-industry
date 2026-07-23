@@ -143,18 +143,18 @@ export function HomeV3() {
       <section className="hero" id="top">
         <div className="heroimgs">{HERO.map((src, i) => <div key={src} className={`hs${i === 0 ? " on" : ""}`} style={{ backgroundImage: `url('${src}')` }} />)}</div>
         <div className="wrap heroinner">
-          <p className="eyebrow" data-fade>Gujranwala, Pakistan · Since 1985</p>
+          <p className="eyebrow" data-fade>Gujranwala, Pakistan · Since 2006</p>
           <h1 className="disp">
             <span className="ln"><span>Precision plastic,</span></span>
             <span className="ln"><span>moulded <em className="serif">at scale.</em></span></span>
           </h1>
-          <p className="sub" data-fade>Contract injection moulding on Japanese presses across a wide range of clamping force — four decades of experience behind every part.</p>
+          <p className="sub" data-fade>Contract injection moulding on Japanese presses across a wide range of clamping force — two decades of experience behind every part.</p>
           <div className="cta" data-fade>
             <a className="btn lg" href="#contact">Start a project →</a>
             <a className="btn lg ghost light" href="#work">See our work</a>
           </div>
         </div>
-        <div className="herometa"><div className="wrap"><span className="cue">Scroll ↓</span><span>40+ years · Japanese presses · FBR registered</span></div></div>
+        <div className="herometa"><div className="wrap"><span className="cue">Scroll ↓</span><span>20+ years · Japanese presses · FBR registered</span></div></div>
       </section>
 
       <div className="marq"><div className="track">{[...MARQUEE, ...MARQUEE].map((w, i) => <span key={i}><b>{w}</b><i className="dot" /></span>)}</div></div>
@@ -166,13 +166,13 @@ export function HomeV3() {
           <p className="answerlbl">What is Rehman Industry?</p>
           <p className="answertxt">
             <strong>Rehman Industry is a family-built plastic injection moulding contract
-            manufacturer</strong> in Gujranwala (GRW), Pakistan. Established <strong>1985</strong>,
+            manufacturer</strong> in Gujranwala (GRW), Pakistan. Established <strong>2006</strong>,
             we mould plastic components for automotive (Toyota Aqua tail-lamp
             covers, motorcycle mudguards), appliance (air-cooler bodies),
             household (thermos, jugs, cups), packaging (lids, caps), agricultural
             (poultry mats) and electrical (instrument boxes, switch housings)
             brands across Pakistan and for export. In-house tooling, FBR-registered,
-            NDAs signed by default. Forty years of plastic moulding under one roof.
+            NDAs signed by default. Twenty years of plastic moulding under one roof.
           </p>
         </div>
       </section>
@@ -183,7 +183,7 @@ export function HomeV3() {
           <div className="reveal">
             <p className="eyebrow">How a part is made</p>
             <h2 className="lead disp">The injection<br />moulding <em className="serif">cycle.</em></h2>
-            <p className="msub">Molten polymer, conveyed by a turning screw, injected into a steel mould under tonnes of clamp pressure, cooled, and ejected — the process we&apos;ve refined for 40 years.</p>
+            <p className="msub">Molten polymer, conveyed by a turning screw, injected into a steel mould under tonnes of clamp pressure, cooled, and ejected — the process we&apos;ve refined for 20 years.</p>
             <div className="cta"><a className="btn" href="#contact">Get a quote →</a><a className="btn ghost" href="#work">See our work</a></div>
           </div>
           <div className="mpanel reveal"><Machine /></div>
@@ -195,7 +195,7 @@ export function HomeV3() {
         <p className="eyebrow reveal">What we run</p>
         <h2 className="lead disp reveal">Built for <em className="serif">volume,</em> tuned for precision.</h2>
         <div className="bento">
-          <div className="cell reveal"><div className="big" data-count="40" data-suf="+">0</div><small>Years moulding plastics</small></div>
+          <div className="cell reveal"><div className="big" data-count="20" data-suf="+">0</div><small>Years moulding plastics</small></div>
           <div className="cell reveal"><div className="big">24h</div><small>Typical quote turnaround</small></div>
           <a className="cell span2 imgcell reveal cellLink" href="/capabilities"><img src="https://images.pexels.com/photos/14804699/pexels-photo-14804699.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Injection moulding press in operation" /><div className="ov"><h4 className="disp">Wide-range presses</h4><small>From small precision parts to large housings — what we can make →</small></div></a>
           <a className="cell span2 imgcell reveal cellLink" href="/tooling"><img src="https://images.pexels.com/photos/8865187/pexels-photo-8865187.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="CNC mould tooling" /><div className="ov"><h4 className="disp">In-house tooling</h4><small>Mould design, build &amp; repair — CNC equipped, see the workshop →</small></div></a>

@@ -97,7 +97,7 @@ const batch1: Article[] = [
         paragraphs: [
           "A good Pakistani injection moulder will need the following from you to quote accurately: a **drawing or 3D file** of the part, the **material** you want (or a description of the use case so they can recommend), the **estimated order quantity** per run, and any **cosmetic or tolerance requirements**. With those four things, a quote should land within a business day.",
           "If you have a physical sample, bring it. A real reference part eliminates 80% of the back-and-forth on quoting.",
-          "At Rehman Industry we typically reply with tooling cost, per-part cost at 3–4 volume tiers, and a lead time estimate — usually within 24 hours.",
+          "At Rehman Industry we typically reply with tooling cost, per-part cost at 3–4 volume tiers, and a lead time estimate — usually within a business day.",
         ],
       },
       {
@@ -279,7 +279,7 @@ const batch1: Article[] = [
       {
         h2: "Why work with us",
         paragraphs: [
-          "Rehman Industry has been making moulds in Gujranwala since 1985. Everything happens under one roof: DFM review, mould design, machining (CNC, lathe, drilling, grinding), sampling, and the actual production. That means short feedback loops, faster lead times, and tooling that holds up for the long haul. Send us your part details — we'll quote within a business day.",
+          "Rehman Industry has been making moulds in Gujranwala since 2006. Everything happens under one roof: DFM review, mould design, machining (CNC, lathe, drilling, grinding), sampling, and the actual production. That means short feedback loops, faster lead times, and tooling that holds up for the long haul. Send us your part details — we'll quote within a business day.",
         ],
       },
     ],
@@ -348,7 +348,7 @@ const batch1: Article[] = [
         h2: "How to start",
         paragraphs: [
           "Pick 2–3 Gujranwala moulders. Send each the same information — your part drawing or sample, target material, estimated quantity per run. Compare quotes side by side. If one is suspiciously cheap, ask why. The middle quote, from a moulder you trust on a factory visit, is usually the right pick.",
-          "At Rehman Industry we quote within a business day, sign NDAs by default, welcome factory visits, and have been doing this since 1985. If we sound like the right fit, send us your details.",
+          "At Rehman Industry we quote within a business day, sign NDAs by default, welcome factory visits, and have been doing this since 2006. If we sound like the right fit, send us your details.",
         ],
       },
     ],
@@ -428,7 +428,7 @@ const batch1: Article[] = [
         h2: "Bottom line",
         paragraphs: [
           "Contract plastic manufacturing in Pakistan is mature, professional and reliable — if you pick the right partner. Look for established names with in-house tooling, transparent quoting, NDAs as standard, and the willingness to give DFM advice. Set up the relationship right and it becomes one of the most cost-effective parts of your supply chain.",
-          "Need a contract manufacturing partner in Pakistan? Send us your part details. We've been doing this since 1985 — quotes within a business day, NDAs by default.",
+          "Need a contract manufacturing partner in Pakistan? Send us your part details. We've been doing this since 2006 — quotes within a business day, NDAs by default.",
         ],
       },
     ],

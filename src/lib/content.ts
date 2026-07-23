@@ -213,7 +213,7 @@ export const processSteps: Step[] = [
 export type Stat = { value: string; label: string };
 
 export const stats: Stat[] = [
-  { value: "40+", label: "Years of experience" },
+  { value: "20+", label: "Years of experience" },
   { value: "Wide", label: "Clamping force range" },
   { value: "8+", label: "Materials mastered" },
   { value: "24h", label: "Typical quote turnaround" },
@@ -313,7 +313,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can I visit the factory before placing an order?",
-    a: "Yes, we encourage it for serious enquiries. Call or WhatsApp to schedule. We're open 24/7 except Fridays.",
+    a: "Yes, we encourage it for serious enquiries. Call or WhatsApp any time to schedule. We're closed Fridays.",
   },
   {
     q: "Are your products food-safe / medical-grade?",

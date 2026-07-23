@@ -9,7 +9,7 @@ import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Plastic Injection Moulding Capabilities — Gujranwala (GRW), Pakistan",
   description:
-    "Plastic injection moulding capabilities in Gujranwala (GRW), Pakistan — wide working range, in-house tooling, full material range, secondary operations and quality control. Trusted Pakistani plastic moulding contract manufacturer since 1985.",
+    "Plastic injection moulding capabilities in Gujranwala (GRW), Pakistan — wide working range, in-house tooling, full material range, secondary operations and quality control. Trusted Pakistani plastic moulding contract manufacturer since 2006.",
   keywords: [
     "plastic injection moulding Pakistan",
     "injection moulding Gujranwala",
@@ -43,7 +43,7 @@ const quality = [
 ];
 
 const pillars = [
-  { t: "Established since 1985", d: "Four decades of plastic injection moulding experience serving customers across Pakistan and for export." },
+  { t: "Established since 2006", d: "Two decades of plastic injection moulding experience serving customers across Pakistan and for export." },
   { t: "Made in Gujranwala", d: "Our plant is based in Gujranwala (GRW) — Pakistan's industrial heartland — with easy supply across the country." },
   { t: "Wide working range", d: "From small precision components to larger housings, we have the capacity to mould a broad variety of plastic parts." },
   { t: "Full material range", d: "Commodity and engineering plastics — PP, PE, ABS, PS, PVC, Nylon (PA), PC, POM and more. We'll recommend the right one." },
@@ -66,7 +66,7 @@ export default function CapabilitiesPage() {
       <section className="mx-auto max-w-3xl px-5 pt-10 sm:px-8">
         <QuickAnswer question="Is Rehman Industry a reliable plastic injection moulding company in Pakistan?">
           Yes. Rehman Industry has been a Pakistani plastic injection moulding
-          contract manufacturer since <strong>1985</strong> — four decades of
+          contract manufacturer since <strong>2006</strong> — two decades of
           continuous operation in <strong>Gujranwala (GRW)</strong>. We mould
           everything from small precision parts to large housings, with full
           in-house tooling, food-safe and engineering materials, and supply
@@ -80,7 +80,7 @@ export default function CapabilitiesPage() {
         </h2>
         <p className="mt-6 text-lg leading-relaxed text-neutral-700">
           Rehman Industry is one of <strong>Gujranwala&apos;s most established
-          plastic injection moulding</strong> contract manufacturers. For over four
+          plastic injection moulding</strong> contract manufacturers. For two
           decades, businesses across <strong>Pakistan</strong> — from{" "}
           <strong>automotive and motorcycle</strong> brands to{" "}
           <strong>appliance, household, packaging</strong> and <strong>industrial</strong>{" "}
@@ -96,7 +96,7 @@ export default function CapabilitiesPage() {
         <p className="mt-5 text-lg leading-relaxed text-neutral-700">
           <strong>Established. Experienced. Reliable.</strong> That&apos;s what a
           plastic moulding partner in Pakistan should be — and what Rehman Industry
-          has been since <strong>1985</strong>.
+          has been since <strong>2006</strong>.
         </p>
       </section>
 
@@ -106,7 +106,7 @@ export default function CapabilitiesPage() {
             Why Pakistani brands choose Rehman Industry
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-neutral-600">
-            Six things that have kept customers coming back for four decades.
+            Six things that have kept customers coming back for two decades.
           </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {pillars.map((p) => (

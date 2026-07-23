@@ -6,7 +6,7 @@ import { services, faqs } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Plastic Injection Moulding in Gujranwala, Pakistan",
   description:
-    "Rehman Industry — precision plastic injection moulding, custom tooling and contract manufacturing in Gujranwala, Pakistan. Tail-lamp covers, mudguards, air-cooler bodies, thermos, poultry mats, caps and custom parts. 40+ years, Japanese presses, FBR registered.",
+    "Rehman Industry — precision plastic injection moulding, custom tooling and contract manufacturing in Gujranwala, Pakistan. Tail-lamp covers, mudguards, air-cooler bodies, thermos, poultry mats, caps and custom parts. 20+ years, Japanese presses, FBR registered.",
   alternates: { canonical: "/" },
 };
 

@@ -26,10 +26,10 @@ export function SiteFooter() {
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
             Precision plastic injection moulding &amp; contract manufacturing in
-            Gujranwala, Pakistan — since 1985.
+            Gujranwala, Pakistan — since 2006.
           </p>
           <p className="mt-3 text-xs text-neutral-500">
-            FBR-registered · 40+ years · Japanese presses
+            FBR-registered · 20+ years · Japanese presses
           </p>
         </div>
         <div>

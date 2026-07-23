@@ -7,15 +7,15 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "About Rehman Industry — Plastic Moulding in Gujranwala Since 1985",
+  title: "About Rehman Industry — Plastic Moulding in Gujranwala Since 2006",
   description:
-    "Rehman Industry — one of Pakistan's most established plastic injection moulding contract manufacturers, based in Gujranwala (GRW) since 1985. Decades of experience, in-house tooling, nationwide supply.",
+    "Rehman Industry — one of Pakistan's most established plastic injection moulding contract manufacturers, based in Gujranwala (GRW) since 2006. Two decades of experience, in-house tooling, nationwide supply.",
   keywords: [
     "Rehman Industry",
     "plastic injection moulding Pakistan",
     "Gujranwala plastic factory",
     "GRW plastic moulding",
-    "Pakistani plastic manufacturer since 1985",
+    "Pakistani plastic manufacturer since 2006",
   ],
   alternates: { canonical: "/about" },
   openGraph: { title: "About Rehman Industry", url: "/about" },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const numLight = ["text-orange-400", "text-amber-400", "text-emerald-400", "text-rose-400"];
 
 const facts = [
-  { Icon: CalendarDays, label: "Established", value: "1985" },
+  { Icon: CalendarDays, label: "Established", value: "2006" },
   { Icon: MapPin, label: "Location", value: "Gujranwala, Pakistan" },
   { Icon: Factory, label: "Focus", value: "Plastic injection moulding" },
   { Icon: Users, label: "We serve", value: "Pakistan + export" },
@@ -35,8 +35,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About us"
-        title="Four decades of plastic, made in Gujranwala"
-        description="Rehman Industry is one of Pakistan's longest-running plastic injection moulding contract manufacturers — established 1985, family-built, and trusted across the country."
+        title="Two decades of plastic, made in Gujranwala"
+        description="Rehman Industry is one of Pakistan's most trusted plastic injection moulding contract manufacturers — established 2006, family-built, and trusted across the country."
         image="/products/hero-1.webp"
         imageAlt="Rehman Industry — plastic injection moulding factory, Gujranwala"
         crumbs={[{ name: "Home", href: "/" }, { name: "About" }]}
@@ -46,11 +46,11 @@ export default function AboutPage() {
         <QuickAnswer question="Who is Rehman Industry?">
           Rehman Industry is a <strong>family-built plastic injection moulding
           contract manufacturer</strong> in Gujranwala, Pakistan, established
-          in <strong>1985</strong>. We mould plastic components for automotive,
+          in <strong>2006</strong>. We mould plastic components for automotive,
           appliance, household, packaging, agricultural and electrical
           customers across Pakistan and for export — all under one roof, with
           in-house mould-making and tooling. FBR-registered. NDAs signed by
-          default. Forty years and counting.
+          default. Twenty years and counting.
         </QuickAnswer>
       </section>
 
@@ -63,7 +63,7 @@ export default function AboutPage() {
                 <strong>Rehman Industry</strong> is a plastic injection moulding and
                 contract manufacturing business based in <strong>Gujranwala (GRW)</strong>,
                 Pakistan — one of the country&apos;s busiest industrial cities.
-                Established in <strong>1985</strong>, we have spent four decades doing
+                Established in <strong>2006</strong>, we have spent two decades doing
                 one thing well: turning plastic into the precise, reliable components
                 that other businesses need to build their products.
               </p>
@@ -72,7 +72,7 @@ export default function AboutPage() {
                 bring us their drawings, samples or just an idea, and we handle the
                 rest — mould making, production, quality control and supply. The
                 brand&apos;s name goes on the product. Ours rarely does. That has
-                been our quiet role in Pakistani manufacturing for the last forty
+                been our quiet role in Pakistani manufacturing for the last twenty
                 years.
               </p>
               <p>
@@ -112,8 +112,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold tracking-tight">Our story</h2>
           <div className="mt-6 space-y-5 text-lg leading-relaxed text-neutral-700">
             <p>
-              Rehman Industry was founded in <strong>1985</strong> in Gujranwala,
-              when Pakistani plastic manufacturing was still finding its feet.
+              Rehman Industry was founded in <strong>2006</strong> in Gujranwala.
               We started small — a single workshop, a few moulds, and a focus
               on doing repeat work for local businesses who needed reliable
               plastic parts faster than the imports could arrive.
@@ -122,7 +121,7 @@ export default function AboutPage() {
               Over the years the operation grew. We invested in better presses,
               built our own <strong>in-house tool room</strong> so we could make
               and repair moulds without depending on outside tool-makers, and
-              widened the range of plastics we mould. By the 2000s we were
+              widened the range of plastics we mould. Before long we were
               shipping components to brands across <strong>Lahore, Karachi,
               Islamabad, Faisalabad, Sialkot and Peshawar</strong>, and handling
               export orders for buyers further afield.
@@ -130,8 +129,8 @@ export default function AboutPage() {
             <p>
               Through every phase, the company has stayed family-built and
               relationship-driven. Most of our customers have worked with us
-              for over a decade. Some have run the same parts for over twenty
-              years. That kind of longevity is rare in Pakistani manufacturing —
+              for over a decade. Some have run the same parts for more than
+              fifteen years. That kind of longevity is rare in Pakistani manufacturing —
               and we treat it as the most honest measure of whether we&apos;re
               still doing this right.
             </p>
@@ -247,7 +246,7 @@ export default function AboutPage() {
           <div className="mt-6 space-y-5 text-lg leading-relaxed text-neutral-700">
             <p>
               We&apos;re at <strong>Link Sui Gas Road, Gujranwala, Punjab, Pakistan</strong>.
-              The factory is open <strong>24/7 except Fridays</strong>. We welcome
+              You can reach us <strong>any time</strong> — we&apos;re closed Fridays. We welcome
               visitors by appointment — call or WhatsApp first so the right
               person can meet you.
             </p>

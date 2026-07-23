@@ -35,7 +35,7 @@ export default function ProductsPage() {
           cups, containers), packaging (lids &amp; closures), agricultural
           (poultry floor mats), industrial (crates &amp; trays) and electrical
           sectors (switch housings, instrument boxes). Made in Gujranwala,
-          Pakistan since 1985.
+          Pakistan since 2006.
         </QuickAnswer>
       </section>
 

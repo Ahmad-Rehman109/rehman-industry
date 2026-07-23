@@ -41,7 +41,7 @@ export default function ServicesPage() {
           from your drawing or sample; (2) <strong>mould making and tooling</strong> —
           designing, building and repairing injection moulds in-house; and
           (3) <strong>contract plastic manufacturing</strong> — full-service plastic
-          production for other brands. Established 1985. FBR-registered.
+          production for other brands. Established 2006. FBR-registered.
         </QuickAnswer>
       </section>
 

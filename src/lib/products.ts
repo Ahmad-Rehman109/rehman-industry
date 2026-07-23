@@ -42,7 +42,7 @@ export const products: Product[] = [
     ],
     metaTitle: "Toyota Aqua Tail-Lamp Covers — Plastic Moulding | Rehman Industry",
     metaDescription:
-      "Plastic injection-moulded Toyota Aqua tail-lamp (backlight) covers — ABS / acrylic, accurate fit, consistent finish. Made in Gujranwala, Pakistan since 1985.",
+      "Plastic injection-moulded Toyota Aqua tail-lamp (backlight) covers — ABS / acrylic, accurate fit, consistent finish. Made in Gujranwala, Pakistan since 2006.",
   },
   {
     slug: "motorcycle-mudguards",

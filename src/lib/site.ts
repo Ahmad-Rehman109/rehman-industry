@@ -38,12 +38,12 @@ export const site = {
   // Approximate Gujranwala coordinates — refine to the exact factory pin if you like
   geo: { lat: 32.1877, lng: 74.1945 },
 
-  foundingYear: 1985, // ≈ 40+ years in business — set the exact year if known
-  experienceYears: 40,
+  foundingYear: 2006, // ≈ 20 years in business — set the exact year if known
+  experienceYears: 20,
   registration: "FBR registered", // Federal Board of Revenue (Pakistan)
 
   // Human-readable hours (shown on the site)
-  hours: [{ days: "Open 24/7", time: "Closed Friday" }],
+  hours: [{ days: "Open any time", time: "Closed Friday" }],
   // Machine-readable hours (JSON-LD) — open every day except Friday, 24h
   openingHours: [
     {

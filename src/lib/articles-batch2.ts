@@ -123,7 +123,7 @@ export const articlesBatch2: Article[] = [
       {
         h2: "Bottom line",
         paragraphs: [
-          "Injection moulding, blow moulding and rotational moulding each have a sweet spot defined by part geometry, volume and cost. Picking the wrong one wastes money — picking the right one feels effortless. For the majority of precision plastic parts that Pakistani businesses need, injection moulding is the answer. That's what Rehman Industry has done for forty years.",
+          "Injection moulding, blow moulding and rotational moulding each have a sweet spot defined by part geometry, volume and cost. Picking the wrong one wastes money — picking the right one feels effortless. For the majority of precision plastic parts that Pakistani businesses need, injection moulding is the answer. That's what Rehman Industry has done for twenty years.",
           "Need help deciding? Send us your part details — drawing, sample or just a description. We'll advise on process, material, tooling and cost. Usually within a business day.",
         ],
       },
@@ -431,7 +431,7 @@ export const articlesBatch2: Article[] = [
       {
         h2: "Where automotive plastic parts are made in Pakistan",
         paragraphs: [
-          "**Gujranwala (GRW)** — the historic metalworking and mould-making centre. Strong in tail-lamp covers, mudguards, and small-to-medium precision parts. Many moulders also run in-house tool rooms. Rehman Industry has been here since 1985.",
+          "**Gujranwala (GRW)** — the historic metalworking and mould-making centre. Strong in tail-lamp covers, mudguards, and small-to-medium precision parts. Many moulders also run in-house tool rooms. Rehman Industry has been here since 2006.",
           "**Karachi** — the largest industrial cluster, close to port for imports/exports. Strong in large automotive components and blow-moulded parts. Proximity to the Indus Motor (Toyota) and Pak Suzuki plants.",
           "**Lahore** — growing cluster, strong in motorcycle parts (close to Atlas Honda and United). Also produces dashboard trim and interior components.",
           "**Faisalabad and Sialkot** — smaller clusters, mostly sub-contract work and aftermarket parts.",
@@ -471,7 +471,7 @@ export const articlesBatch2: Article[] = [
         h2: "Lead times",
         paragraphs: [
           "**Tooling:** 3–8 weeks for a typical automotive mould (depending on complexity), plus 1–2 weeks for sampling. Comparable to Chinese lead times, but without the international shipping delay.",
-          "**Production:** repeat runs are typically turned around in days, not weeks. Pakistani automotive moulders generally run 6 days/week, many 24/7 (Rehman Industry runs 24/7 except Friday).",
+          "**Production:** repeat runs are typically turned around in days, not weeks. Pakistani automotive moulders generally run 6 days/week, many 24/7 (Rehman Industry closes only on Friday — reach us any time).",
           "**Advantage of local sourcing:** no sea freight lead time (saves 3–6 weeks vs China), easier to visit the factory for approvals, and faster response on engineering changes mid-production.",
         ],
       },
@@ -483,14 +483,14 @@ export const articlesBatch2: Article[] = [
           "**Step 3:** Compare quotes side by side. The middle quote from a moulder with a factory you've visited is usually the right pick. Be wary of the cheapest — ask what steel they're using for the mould.",
           "**Step 4:** Run a DFM review (free at good moulders) before committing to tooling.",
           "**Step 5:** Approve T1/T2 samples before green-lighting production. Never skip this.",
-          "At Rehman Industry, we've been moulding automotive plastic parts in Gujranwala since 1985 — including Toyota Aqua tail-lamp covers, motorcycle mudguards, trim and clips. Send us your automotive part requirements and we'll quote within a business day.",
+          "At Rehman Industry, we've been moulding automotive plastic parts in Gujranwala since 2006 — including Toyota Aqua tail-lamp covers, motorcycle mudguards, trim and clips. Send us your automotive part requirements and we'll quote within a business day.",
         ],
       },
       {
         h2: "Bottom line",
         paragraphs: [
           "Pakistani automotive plastic parts manufacturing is a mature, cost-competitive sector capable of producing OEM-grade components. Gujranwala, Karachi and Lahore have established clusters with decades of experience. For parts volumes under 500,000/year, local sourcing beats Chinese imports on total cost, lead time and responsiveness. The key is picking the right moulder — one with in-house tooling, a transparent quoting process, and a factory you can walk through.",
-          "Looking for an automotive plastic parts supplier in Pakistan? Tell us what you need — we've been doing this for forty years.",
+          "Looking for an automotive plastic parts supplier in Pakistan? Tell us what you need — we've been doing this for twenty years.",
         ],
       },
     ],
@@ -550,7 +550,7 @@ export const articlesBatch2: Article[] = [
         h2: "How to find a Pakistani plastic parts supplier",
         paragraphs: [
           "**B2B platforms.** TradeKey (Pakistani origin), Alibaba (many Pakistani sellers have listings), IndiaMART (covers Pakistan in some categories), ExportBureau.",
-          "**Direct search.** Google 'plastic injection moulding Pakistan' or 'plastic manufacturer Gujranwala.' The fact that you're reading this article suggests it's working — we (Rehman Industry) are a Gujranwala-based injection moulder who has been doing this since 1985.",
+          "**Direct search.** Google 'plastic injection moulding Pakistan' or 'plastic manufacturer Gujranwala.' The fact that you're reading this article suggests it's working — we (Rehman Industry) are a Gujranwala-based injection moulder who has been doing this since 2006.",
           "**Trade shows.** TEXPO (Karachi), Pakistan International Industrial Expo, Gujranwala Chamber of Commerce events.",
           "**Trade offices.** Pakistani embassies and trade commissions maintain supplier directories. The Trade Development Authority of Pakistan (TDAP) can facilitate introductions.",
           "**Referrals.** Ask other buyers in your industry who source from South Asia. Word of mouth is still the most reliable channel for finding Pakistani manufacturers.",
@@ -609,7 +609,7 @@ export const articlesBatch2: Article[] = [
         paragraphs: [
           "**Language.** English is the default for business in Pakistan. Email, WhatsApp and phone calls in English work fine. Technical vocabulary (mould, cavity, gate, runner, shrinkage) is universally understood by Pakistani moulders.",
           "**Responsiveness.** WhatsApp is the fastest channel — most Pakistani manufacturers respond within hours, not days. Email works for formal communication; WhatsApp for quick questions and photo exchanges.",
-          "**Working hours.** Pakistan works Sunday through Thursday (many manufacturers run Saturday too). Friday is the weekly holiday. Factory hours are typically long — many run 24/7 (Rehman Industry runs 24/7 except Friday).",
+          "**Working hours.** Pakistan works Sunday through Thursday (many manufacturers run Saturday too). Friday is the weekly holiday. Factory hours are typically long — many run 24/7 (Rehman Industry closes only on Friday — reach us any time).",
           "**Relationship.** Pakistani business is relationship-driven. A factory visit + a cup of chai goes further than a 20-page supplier qualification questionnaire. Invest in the relationship early and it pays dividends in priority, flexibility and honesty for years.",
         ],
       },
@@ -623,7 +623,7 @@ export const articlesBatch2: Article[] = [
         h2: "Bottom line",
         paragraphs: [
           "Pakistan is a viable, cost-effective and increasingly capable source for injection-moulded plastic parts — especially for buyers in the Middle East, Africa and Europe looking to diversify away from China-only supply chains. The key is vetting the supplier properly (factory visit, samples, references), specifying quality requirements clearly, and investing in the relationship.",
-          "Rehman Industry has been injection-moulding plastic parts in Gujranwala since 1985. We welcome export enquiries — send us your part drawing, target material and estimated volume, and we'll quote within a business day. NDAs signed by default. Factory visits welcome.",
+          "Rehman Industry has been injection-moulding plastic parts in Gujranwala since 2006. We welcome export enquiries — send us your part drawing, target material and estimated volume, and we'll quote within a business day. NDAs signed by default. Factory visits welcome.",
         ],
       },
     ],
