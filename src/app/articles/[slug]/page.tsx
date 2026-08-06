@@ -27,8 +27,11 @@ export async function generateMetadata({
   };
 }
 
-/** Render a paragraph with **bold** runs supported. */
+/** Render a paragraph with **bold** runs supported, or an h3 for a "### " line. */
 function Para({ text }: { text: string }) {
+  if (text.startsWith("### ")) {
+    return <h3 className="mt-8 text-xl font-semibold tracking-tight">{text.slice(4)}</h3>;
+  }
   const parts = text.split(/(\*\*[^*]+\*\*)/);
   return (
     <p className="mt-4 text-lg leading-relaxed text-neutral-700">
