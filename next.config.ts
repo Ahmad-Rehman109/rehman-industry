@@ -1,24 +1,10 @@
 import type { NextConfig } from "next";
 
-const CANONICAL_ORIGIN = "https://rehmanindustry.com";
-
 const nextConfig: NextConfig = {
+  // Permanent redirects: /portfolio → /products (the canonical product directory).
+  // Old slugs remain crawlable via 301 to the matching product page where it exists.
   async redirects() {
     return [
-      // Force HTTPS. Cloudflare passes the client's scheme through as
-      // `x-forwarded-proto` (verified: "https" over TLS, "http" otherwise), so
-      // this can never loop — the redirected request arrives with "https" and
-      // no longer matches. Without it Google indexes http:// and https:// as
-      // two separate sites and splits the ranking signals between them.
-      {
-        source: "/:path*",
-        has: [{ type: "header", key: "x-forwarded-proto", value: "http" }],
-        destination: `${CANONICAL_ORIGIN}/:path*`,
-        permanent: true,
-      },
-
-      // Permanent redirects: /portfolio → /products (the canonical product directory).
-      // Old slugs remain crawlable via 301 to the matching product page where it exists.
       { source: "/portfolio", destination: "/products", permanent: true },
       // map the project slugs → their /products counterparts
       { source: "/portfolio/automotive-tail-lamp-covers", destination: "/products/toyota-aqua-tail-lamp-covers", permanent: true },
