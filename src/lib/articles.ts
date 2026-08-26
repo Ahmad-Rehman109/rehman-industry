@@ -17,6 +17,12 @@ export type Article = {
   metaDescription: string;
   /** Sections — each {h2, paragraphs[]}. h3 inside paragraphs uses ### prefix. */
   body: { h2: string; paragraphs: string[] }[];
+  /**
+   * Optional Q&A block, rendered at the end of the article and emitted as
+   * FAQPage JSON-LD. Question-shaped, self-contained answers are what AI
+   * search (Google AI Overviews, ChatGPT, Perplexity) quotes directly.
+   */
+  faqs?: { q: string; a: string }[];
 };
 
 import { articlesBatch2 } from "./articles-batch2";
@@ -24,6 +30,7 @@ import { articlesBatch3 } from "./articles-batch3";
 import { articlesBatch4 } from "./articles-batch4";
 import { articlesBatch5 } from "./articles-batch5";
 import { articlesBatch6 } from "./articles-batch6";
+import { articlesBatch7 } from "./articles-batch7";
 
 const batch1: Article[] = [
   {
@@ -438,7 +445,7 @@ const batch1: Article[] = [
   },
 ];
 
-export const articles: Article[] = [...batch1, ...articlesBatch2, ...articlesBatch3, ...articlesBatch4, ...articlesBatch5, ...articlesBatch6];
+export const articles: Article[] = [...batch1, ...articlesBatch2, ...articlesBatch3, ...articlesBatch4, ...articlesBatch5, ...articlesBatch6, ...articlesBatch7];
 
 export function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);

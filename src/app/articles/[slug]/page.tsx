@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { articles, getArticle } from "@/lib/articles";
 import { PageHero } from "@/components/page-hero-v2";
 import { CtaBand } from "@/components/cta-v2";
-import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
+import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/jsonld";
 import { absoluteUrl, site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -91,6 +91,22 @@ export default async function ArticlePage({
           </section>
         ))}
 
+        {/* FAQ — question-shaped, self-contained answers. Also emitted as
+            FAQPage JSON-LD below, which is what AI search quotes directly. */}
+        {a.faqs?.length ? (
+          <section className="mt-12">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Frequently asked questions
+            </h2>
+            {a.faqs.map((f) => (
+              <div key={f.q} className="mt-6">
+                <h3 className="text-xl font-semibold tracking-tight">{f.q}</h3>
+                <p className="mt-2 text-lg leading-relaxed text-neutral-700">{f.a}</p>
+              </div>
+            ))}
+          </section>
+        ) : null}
+
         {/* In-article CTA */}
         <div className="mt-14 rounded-3xl border border-orange-200 bg-orange-50 p-7">
           <h3 className="text-xl font-semibold tracking-tight text-neutral-900">
@@ -142,6 +158,7 @@ export default async function ArticlePage({
 
       <CtaBand />
 
+      {a.faqs?.length ? <JsonLd data={faqSchema(a.faqs)} /> : null}
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
