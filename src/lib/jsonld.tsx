@@ -54,13 +54,30 @@ export function localBusinessSchema() {
     })),
     areaServed: [
       { "@type": "Country", name: "Pakistan" },
-      { "@type": "City", name: "Gujranwala" },
       { "@type": "State", name: "Punjab" },
+      // Buyers search from their own city, so name the ones we actually
+      // ship to rather than relying on "Pakistan" alone.
+      { "@type": "City", name: "Gujranwala" },
+      { "@type": "City", name: "Lahore" },
+      { "@type": "City", name: "Karachi" },
+      { "@type": "City", name: "Islamabad" },
+      { "@type": "City", name: "Rawalpindi" },
+      { "@type": "City", name: "Faisalabad" },
+      { "@type": "City", name: "Sialkot" },
+      { "@type": "City", name: "Multan" },
+      { "@type": "City", name: "Peshawar" },
     ],
     knowsAbout: [
       "Plastic injection moulding",
+      "Injection moulding machines",
       "Mould making and tooling",
       "Plastic contract manufacturing",
+      "Custom plastic parts manufacturing",
+      "Design for manufacturability",
+      "Plastic industry in Pakistan",
+      "Automotive plastic components",
+      "Electrical plastic housings",
+      "Plastic housewares manufacturing",
     ],
     // Aggregate rating from our verified Google Business Profile.
     aggregateRating: {

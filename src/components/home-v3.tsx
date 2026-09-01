@@ -145,10 +145,10 @@ export function HomeV3() {
         <div className="wrap heroinner">
           <p className="eyebrow" data-fade>Gujranwala, Pakistan · Since 2006</p>
           <h1 className="disp">
-            <span className="ln"><span>Precision plastic,</span></span>
-            <span className="ln"><span>moulded <em className="serif">at scale.</em></span></span>
+            <span className="ln"><span>Precision plastic</span></span>
+            <span className="ln"><span>injection moulding <em className="serif">at scale.</em></span></span>
           </h1>
-          <p className="sub" data-fade>Contract injection moulding on Japanese presses across a wide range of clamping force — two decades of experience behind every part.</p>
+          <p className="sub" data-fade>Contract injection moulding in Gujranwala, Pakistan on Japanese presses across a wide range of clamping force — two decades of experience behind every part.</p>
           <div className="cta" data-fade>
             <a className="btn lg" href="#contact">Start a project →</a>
             <a className="btn lg ghost light" href="#work">See our work</a>

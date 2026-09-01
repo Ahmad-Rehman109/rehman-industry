@@ -9,11 +9,11 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Plastic Injection Moulding Services in Pakistan",
   description:
     "Plastic injection moulding, custom mould making & tooling, and contract manufacturing in Gujranwala, Pakistan — from your design to finished parts.",
   alternates: { canonical: "/services" },
-  openGraph: { title: "Our Services | Rehman Industry", url: "/services" },
+  openGraph: { title: "Plastic Injection Moulding Services | Rehman Industry", url: "/services" },
 };
 
 const serviceImg: Record<string, string> = {

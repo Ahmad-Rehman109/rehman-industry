@@ -7,7 +7,7 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "About Rehman Industry — Plastic Moulding in Gujranwala Since 2006",
+  title: "About Us — Plastic Moulding Factory in Gujranwala Since 2006",
   description:
     "Rehman Industry — one of Pakistan's most established plastic injection moulding contract manufacturers, based in Gujranwala (GRW) since 2006. Two decades of experience, in-house tooling, nationwide supply.",
   keywords: [

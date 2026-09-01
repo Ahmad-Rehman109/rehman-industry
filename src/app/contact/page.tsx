@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/contact-form";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Contact & Get a Quote",
+  title: "Contact — Get an Injection Moulding Quote",
   description:
     "Get a quote for plastic injection moulding from Rehman Industry, Gujranwala. Send your drawing, sample or requirement by form, phone or WhatsApp.",
   alternates: { canonical: "/contact" },

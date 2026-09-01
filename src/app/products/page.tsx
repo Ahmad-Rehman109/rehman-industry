@@ -8,7 +8,7 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Plastic Products — What We Make",
+  title: "Plastic Products We Manufacture in Pakistan",
   description:
     "Plastic products moulded by Rehman Industry in Gujranwala, Pakistan: Toyota Aqua tail-lamp covers, motorcycle mudguards, air-cooler bodies, thermos, jugs & cups, poultry mats, lids and instrument boxes.",
   alternates: { canonical: "/products" },

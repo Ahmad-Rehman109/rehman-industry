@@ -4,9 +4,9 @@ import { JsonLd, faqSchema, serviceSchema } from "@/lib/jsonld";
 import { services, faqs } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Plastic Injection Moulding in Gujranwala, Pakistan",
+  title: "Rehman Industry — Plastic Injection Moulding in Gujranwala, Pakistan",
   description:
-    "Rehman Industry — precision plastic injection moulding, custom tooling and contract manufacturing in Gujranwala, Pakistan. Tail-lamp covers, mudguards, air-cooler bodies, thermos, poultry mats, caps and custom parts. 20+ years, Japanese presses, FBR registered.",
+    "Rehman Industry is a plastic injection moulding factory in Gujranwala, Pakistan — custom tooling, contract manufacturing and moulded parts for automotive, housewares, packaging and agriculture. 20+ years, Japanese presses, FBR registered.",
   alternates: { canonical: "/" },
 };
 

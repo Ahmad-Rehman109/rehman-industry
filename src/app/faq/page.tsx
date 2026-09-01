@@ -7,7 +7,7 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
+  title: "Plastic Injection Moulding FAQs",
   description:
     "Common questions about plastic injection moulding, tooling, materials, order quantities and lead times — answered by Rehman Industry, Gujranwala.",
   alternates: { canonical: "/faq" },

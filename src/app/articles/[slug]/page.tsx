@@ -32,12 +32,21 @@ function Para({ text }: { text: string }) {
   if (text.startsWith("### ")) {
     return <h3 className="mt-8 text-xl font-semibold tracking-tight">{text.slice(4)}</h3>;
   }
-  const parts = text.split(/(\*\*[^*]+\*\*)/);
+  // **bold** and [label](/internal-path) runs.
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(\/[^)]*\))/);
   return (
     <p className="mt-4 text-lg leading-relaxed text-neutral-700">
       {parts.map((seg, i) => {
         if (seg.startsWith("**") && seg.endsWith("**")) {
           return <strong key={i}>{seg.slice(2, -2)}</strong>;
+        }
+        const link = /^\[([^\]]+)\]\((\/[^)]*)\)$/.exec(seg);
+        if (link) {
+          return (
+            <Link key={i} href={link[2]} className="font-medium text-orange-600 underline underline-offset-2">
+              {link[1]}
+            </Link>
+          );
         }
         return <span key={i}>{seg}</span>;
       })}
@@ -106,6 +115,26 @@ export default async function ArticlePage({
             ))}
           </section>
         ) : null}
+
+        {/* Service links. Every article previously carried zero in-content links
+            to the pages that convert, so no link equity reached them. */}
+        <section className="mt-12 rounded-2xl border border-neutral-200 bg-neutral-50 p-6">
+          <h2 className="text-lg font-semibold tracking-tight">What we do at Rehman Industry</h2>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {[
+              { href: "/services/plastic-injection-moulding", label: "Plastic injection moulding" },
+              { href: "/services/mould-making", label: "Mould making and tooling" },
+              { href: "/services/contract-manufacturing", label: "Contract manufacturing" },
+              { href: "/products", label: "Products we mould" },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="text-orange-600 underline underline-offset-2">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         {/* In-article CTA */}
         <div className="mt-14 rounded-3xl border border-orange-200 bg-orange-50 p-7">

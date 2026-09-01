@@ -4,7 +4,7 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Our Plastic Injection Moulding Capacity",
+  title: "Injection Moulding Machines & Production Capacity",
   description:
     "Rehman Industry — established plastic injection moulding capacity in Gujranwala, Pakistan. Decades of production experience, a wide working range, and a factory floor that runs almost around the clock.",
   alternates: { canonical: "/machines" },

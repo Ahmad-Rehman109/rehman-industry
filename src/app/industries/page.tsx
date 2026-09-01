@@ -6,7 +6,7 @@ import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Industries We Serve",
+  title: "Industries We Serve — Custom Plastic Moulded Components",
   description:
     "Rehman Industry supplies custom moulded plastic components to automotive, electrical, packaging, household, agriculture and construction businesses across Pakistan.",
   alternates: { canonical: "/industries" },
