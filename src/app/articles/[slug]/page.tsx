@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import { articles, getArticle } from "@/lib/articles";
+import { articles, getArticle, type Article } from "@/lib/articles";
 import { PageHero } from "@/components/page-hero-v2";
 import { CtaBand } from "@/components/cta-v2";
 import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/jsonld";
@@ -54,6 +54,39 @@ function Para({ text }: { text: string }) {
   );
 }
 
+/**
+ * Pick 3 related articles by shared keyword/title vocabulary.
+ *
+ * This used to be `articles.filter(...).slice(0, 3)`, which sent every
+ * article to the same first three: those three collected 23 inbound links
+ * each while 20 of the 24 articles were left with a single inbound link
+ * from the /articles hub. Scoring by overlap spreads the links and makes
+ * the suggestions genuinely relevant.
+ */
+function terms(a: Article): Set<string> {
+  return new Set(
+    `${a.keywords.join(" ")} ${a.title}`
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((w) => w.length > 3),
+  );
+}
+
+function pickRelated(a: Article): Article[] {
+  const mine = terms(a);
+  return articles
+    .filter((x) => x.slug !== a.slug)
+    .map((x) => {
+      let score = 0;
+      for (const t of terms(x)) if (mine.has(t)) score++;
+      return { article: x, score };
+    })
+    // Ties break on slug so the output is deterministic across builds.
+    .sort((x, y) => y.score - x.score || x.article.slug.localeCompare(y.article.slug))
+    .slice(0, 3)
+    .map((x) => x.article);
+}
+
 export default async function ArticlePage({
   params,
 }: { params: Promise<{ slug: string }> }) {
@@ -61,7 +94,7 @@ export default async function ArticlePage({
   const a = getArticle(slug);
   if (!a) notFound();
 
-  const related = articles.filter((x) => x.slug !== a.slug).slice(0, 3);
+  const related = pickRelated(a);
 
   return (
     <>

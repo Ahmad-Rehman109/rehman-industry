@@ -127,6 +127,14 @@ export const articlesBatch2: Article[] = [
           "Need help deciding? Send us your part details — drawing, sample or just a description. We'll advise on process, material, tooling and cost. Usually within a business day.",
         ],
       },
+      {
+        h2: "Going deeper on a specific pairing",
+        paragraphs: [
+          "This page compares all three processes side by side. If you have already narrowed the choice to two, these head-to-head guides go further on the trade-offs that actually decide it.",
+          "**[Blow moulding vs rotational moulding](/articles/blow-moulding-vs-rotational-moulding)** — the two processes that both make hollow parts, and why they almost never compete for the same job.",
+          "**[Injection moulding vs rotational moulding](/articles/injection-moulding-vs-rotational-moulding)** — precision and speed against cheap tooling and large parts, including where the cost crossover actually sits.",
+        ],
+      },
     ],
   },
 
